@@ -120,8 +120,3 @@ AI tools were used only for:
 - consistency checks between the manuscript and Lean formalization.
 
 See [`AI_USE.md`](AI_USE.md) for the full disclosure.
-
-## Citation
-
-A `CITATION.cff` file is included as a template. Please edit the author metadata,
-version, and DOI/arXiv fields before public release.
