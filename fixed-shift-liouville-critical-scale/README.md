@@ -42,7 +42,6 @@ criterion.
 
 - `critical_scale_reduction_fixed_shift_liouville_pair_correlations.tex` — manuscript source.
 - `critical_scale_reduction_fixed_shift_liouville_pair_correlations.pdf` — compiled manuscript.
-- `tex_original_to_patched.diff` — diff from the earlier TeX source to the current fourth-power-corrected version.
 
 ### `lean/`
 
