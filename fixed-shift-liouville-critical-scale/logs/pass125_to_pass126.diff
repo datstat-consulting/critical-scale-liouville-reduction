@@ -1,0 +1,14 @@
+--- /mnt/data/FixedShiftLiouville_pass125.lean	2026-05-18 20:10:25.411627386 +0000
++++ /mnt/data/FixedShiftLiouville_pass126.lean	2026-05-18 20:28:48.186498425 +0000
+@@ -9015,7 +9015,10 @@
+       rw [Int.card_Icc]
+       change Int.toNat ((M : ℤ) + 1 - -(M : ℤ)) = 2 * M + 1
+       rw [show ((M : ℤ) + 1 - -(M : ℤ)) = (2 * M + 1 : ℤ) by ring]
+-      norm_num
++      apply Nat.cast_injective (R := ℤ)
++      rw [Int.toNat_of_nonneg]
++      · norm_num
++      · omega
+     rw [hcardNat]
+     exact_mod_cast (by omega : 2 * M + 1 ≤ 3 * M)
+   have hfourth_eq : |B a x M| ^ 4 = ‖∑ t ∈ s, C t‖ ^ 2 := by

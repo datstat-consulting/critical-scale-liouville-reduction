@@ -1,0 +1,1798 @@
+\documentclass[11pt]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{geometry}
+\geometry{margin=1.1in}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\T}{\mathbb T}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\ee}[1]{e\!\left(#1\right)}
+
+\title{Fixed-shift Liouville pair correlations: exact reductions, projected transport, and local quadratic obstructions}
+\author{Míngshū Wáng\thanks{Corresponding author. Email: adriel.datstat@gmail.com}}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a fixed nonzero shift $h$, we study the Liouville pair-correlation sums
+\[
+A_h(N):=\sum_{n\le N}\lambda(n)\lambda(n+h).
+\]
+We develop a critical-scale reduction theory for the asymptotic formula $A_h(N)=o(N)$, the fixed-shift two-point case of Chowla's conjecture, at the scale $H=X^{1/2}$. Passing to the derived sequence $a_h(n)=\lambda(n)\lambda(n+h)$, we separate the direct absolute first-moment implication from the signed Fej\'er-kernel and dyadic-shell identities, and we record exact quartic Ces\`aro, Fourier--Dirichlet, dyadic-shell, and first-moment reformulations of the critical short-block criterion. We then prove the correct fixed-shift local $U^2$ reduction: the normalized local quantity is a fourth-power quantity, so block sums are controlled through a fourth-power estimate and a Young/H\"older averaging step, not by a false linear pointwise bound. Finally we introduce a projected packet formalism for bad blocks. On the projected side we establish an exact affine-shear identity, a rigidity theorem, and an exact transport-defect identity, and we show that a large projected Fej\'er/shear packet forces a local quadratic-phase obstruction for $\lambda$. The output is a structured conditional reduction of the remaining obstruction to projected bias, transport rigidity, and projected long-range packet formation.
+\end{abstract}
+
+\section{Introduction and statement of results}
+
+Let $\lambda(n)=(-1)^{\Omega(n)}$ be the Liouville function. For a fixed nonzero shift $h\in\Z$, we consider the pair-correlation sum
+\[
+A_h(N):=\sum_{n\le N}\lambda(n)\lambda(n+h).
+\]
+The asymptotic formula
+\[
+A_h(N)=o(N)
+\qquad (N\to\infty)
+\]
+is the fixed-shift two-point case of Chowla's conjecture \cite{chowla1965riemann}. Major progress on correlations of multiplicative functions is now available in logarithmically averaged settings, at almost all scales, and through short-interval, Fourier-uniformity, and higher-uniformity theorems on average \cite{tao2016logarithmically,taoteravainen2019almostall,matomaki2016multiplicative,matomaki2020fourier,matomaki2023higher,greentao2012mobiusnil,matomakiShao2021poly}. The fixed-shift pointwise problem nevertheless remains especially rigid. The purpose of this paper is to isolate that rigidity at the critical scale
+\[
+H=X^{1/2},
+\]
+and to show that the remaining obstruction can be expressed in a sharply structured local form.
+
+Our analysis is carried out entirely at one fixed shift. Starting from the critical short-block mean-square criterion of Section~\ref{sec:short-block}, we pass to the derived sequence
+\[
+a_h(n):=\lambda(n)\lambda(n+h),
+\]
+and develop a chain of exact reformulations and reductions for its short sums and associated energy profile. In particular, we obtain quartic Ces\`aro, Fourier--Dirichlet, dyadic-shell, and short-interval first-moment criteria, together with a positive multiscale absorption theorem. The Fourier-kernel side of the argument is classical in spirit \cite{zygmund1959trigonometric,grafakos2008classical}, while the multiscale organization is deterministic and chaining-style rather than generic chaining in Talagrand's stochastic-process sense \cite{talagrand2005generic}. We then record a fixed-shift local $U^2$ reduction in the fourth-power normalization used in the formal development. This point is important: the averaged local $U^2$ input is consumed through a fourth-power estimate and a scalar Young inequality, not through a linear pointwise bound in the normalized fourth-power mass. Finally we introduce a projected packet formalism for bad blocks. On the projected side we establish an exact affine-shear identity, a rigidity theorem, and an exact transport-defect identity, and we show that a large projected Fej\'er/shear packet forces a local quadratic-phase obstruction for $\lambda$, in the broader context of recent polynomial-phase and higher-uniformity results for multiplicative functions in short intervals \cite{matomaki2023higher,greentao2012mobiusnil,matomakiShao2021poly}. In this way the fixed-shift problem is reduced to a precise final dichotomy between projected bias and projected long-range packet formation.
+
+A basic global consequence of the short-block framework is the following conditional implication. It is stated in absolute first-moment form; this is stronger information than signed Fej\'er cancellation, because it controls the total mass of bad short blocks rather than cancellations between shells.
+
+\begin{theorem}[Conditional fixed-shift theorem]\label{thm:main}
+Fix $h\neq 0$. Assume that, with $H=\lfloor X^{1/2}\rfloor$, one has
+\begin{equation}\label{eq:main-first-moment-hyp}
+\sup_{1\le M\le H}
+\frac{1}{XM}
+\sum_{X\le x\le 2X-M}
+\abs{\sum_{x<n\le x+M}\lambda(n)\lambda(n+h)}
+\to 0
+\qquad (X\to\infty).
+\end{equation}
+Then
+\[
+A_h(N)=o(N)
+\qquad (N\to\infty).
+\]
+\end{theorem}
+
+Section~\ref{sec:first-moment} contains the direct first-moment implication and its dyadic-shell consequence. Section~\ref{sec:local-u2} records the corrected fourth-power local $U^2$ reduction. Section~\ref{sec:projected-packets} develops the projected transport and packet framework that captures the final transition in the reduction.
+
+\section{The critical short-block criterion}
+\label{sec:short-block}
+
+Fix $h\neq 0$ and define
+\[
+a_h(n):=\lambda(n)\lambda(n+h),
+\qquad
+A_h(N):=\sum_{n\le N}a_h(n),
+\]
+and for integers $x$ and $H\ge 1$ define
+\[
+B_h(x;H):=\sum_{x<n\le x+H}a_h(n)=A_h(x+H)-A_h(x).
+\]
+
+\begin{theorem}[Critical short-block criterion]
+\label{thm:short-block-criterion}
+Fix $h\neq 0$. Assume that for $H=\lfloor X^{1/2}\rfloor$ one has
+\begin{equation}
+\label{eq:short-block-criterion-hyp}
+\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2=o(XH^2)
+\qquad (X\to\infty).
+\end{equation}
+Then
+\begin{equation}
+\label{eq:short-block-criterion-conc}
+A_h(N)=o(N)
+\qquad (N\to\infty).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+\eta(X):=\frac{1}{XH^2}\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2,
+\]
+so that $\eta(X)\to 0$ by \eqref{eq:short-block-criterion-hyp}. Fix a parameter $0<\tau\le 1$, to be chosen later, and define the bad set
+\[
+\mathcal E_\tau:=\{x\in [X,2X-H]\cap\Z:\ \abs{B_h(x;H)}>\tau H\}.
+\]
+By Markov's inequality,
+\[
+\#\mathcal E_\tau\cdot \tau^2 H^2
+\le
+\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2
+=\eta(X)XH^2,
+\]
+so
+\begin{equation}
+\label{eq:bad-set-bound}
+\#\mathcal E_\tau\le \eta(X)\tau^{-2}X.
+\end{equation}
+
+Now split starting points by residue class modulo $H$. For $r\in\{0,1,\dots,H-1\}$ set
+\[
+x_{r,j}:=X+r+jH.
+\]
+Averaging over $r$ shows that there exists a residue class $r=r_X$ such that
+\[
+\#\{j:\ x_{r,j}\in \mathcal E_\tau\}
+\le
+\frac{\#\mathcal E_\tau}{H}
+\le
+\eta(X)\tau^{-2}\frac{X}{H}.
+\]
+Fix such an $r$ and write $x_j:=x_{r,j}$.
+
+Let $N\in[X,2X]$, and choose $m$ so that
+\[
+x_m\le N < x_{m+1},
+\]
+with the convention $m=-1$ if $N<x_0$. Then
+\[
+A_h(N)-A_h(x_0)
+=
+\sum_{j=0}^{m-1}\bigl(A_h(x_{j+1})-A_h(x_j)\bigr)+O(H)
+=
+\sum_{j=0}^{m-1} B_h(x_j;H)+O(H),
+\]
+since the tail interval between $x_m$ and $N$ has length $<H$ and $\abs{a_h(n)}\le 1$.
+
+Among the blocks $x_j$, every good block contributes at most $\tau H$ in absolute value, while the total number of bad blocks is at most $\eta(X)\tau^{-2}X/H$. Since $mH\ll X$, we obtain
+\[
+\abs{A_h(N)-A_h(x_0)}
+\ll
+\tau X + \eta(X)\tau^{-2}X + H.
+\]
+Also $x_0=X+r$ with $0\le r<H$, so
+\[
+\abs{A_h(x_0)-A_h(X)}\le H.
+\]
+Hence
+\begin{equation}
+\label{eq:blockwise-prefix-bound}
+\sup_{X\le N\le 2X}\abs{A_h(N)-A_h(X)}
+\ll
+\tau X + \eta(X)\tau^{-2}X + H.
+\end{equation}
+Choose $\tau:=\eta(X)^{1/3}$. Then
+\[
+\tau X + \eta(X)\tau^{-2}X \ll \eta(X)^{1/3}X,
+\]
+and because $H=X^{1/2}+O(1)=o(X)$, \eqref{eq:blockwise-prefix-bound} becomes
+\begin{equation}
+\label{eq:blockwise-prefix-oX}
+\sup_{X\le N\le 2X}\abs{A_h(N)-A_h(X)}=o(X).
+\end{equation}
+
+Now let $X_j:=2^j$. For any $N$ with $2^K\le N<2^{K+1}$,
+\[
+A_h(N)
+=
+A_h(1)+\sum_{j=0}^{K-1}\bigl(A_h(2^{j+1})-A_h(2^j)\bigr)+\bigl(A_h(N)-A_h(2^K)\bigr).
+\]
+Applying \eqref{eq:blockwise-prefix-oX} on each dyadic interval $[2^j,2^{j+1}]$ shows that
+\[
+A_h(2^{j+1})-A_h(2^j)=o(2^j),
+\qquad
+A_h(N)-A_h(2^K)=o(2^K).
+\]
+Therefore, for every $\varepsilon>0$, all sufficiently large $j$ satisfy
+\[
+\abs{A_h(2^{j+1})-A_h(2^j)}\le \varepsilon 2^j,
+\qquad
+\abs{A_h(N)-A_h(2^K)}\le \varepsilon 2^K,
+\]
+so
+\[
+\abs{A_h(N)}\le O_\varepsilon(1)+\varepsilon\sum_{j=0}^{K}2^j\ll O_\varepsilon(1)+\varepsilon N.
+\]
+Dividing by $N$ and letting $N\to\infty$, then $\varepsilon\to 0$, gives \eqref{eq:short-block-criterion-conc}.
+\end{proof}
+
+\section{Energy profile and quartic correlations}
+\label{sec:energy-profile}
+
+We now pass from the short-block criterion to the exact quadratic and quartic identities attached to the derived sequence $a_h$. Throughout this section, let $X\ge 1$ be large and set
+\[
+H:=\lfloor X^{1/2}\rfloor.
+\]
+For integers $M\ge 1$, define the short-block energy
+\[
+E_h(M;X):=\sum_{X\le x\le 2X-M}\abs{B_h(x;M)}^2.
+\]
+Also define the quartic correlation sums
+\[
+P_h(t;X):=\sum_{X<n\le 2X-t}a_h(n)a_h(n+t)
+\qquad (t\ge 1),
+\]
+and the Ces\`aro partial sums
+\[
+C_h(M;X):=\sum_{1\le t\le M}P_h(t;X).
+\]
+
+\begin{proposition}[Exact energy profile]
+\label{prop:energy-profile}
+For every integer $M\ge 1$,
+\begin{equation}
+\label{eq:energy-profile}
+E_h(M;X)=MX+2\sum_{1\le t<M}(M-t)P_h(t;X)+O_h(M^3).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let
+\[
+a_{h,X}(n):=a_h(n)\,\mathbf 1_{X<n\le 2X}.
+\]
+Set
+\[
+\widetilde B_h(x;M):=\sum_{x<n\le x+M}a_{h,X}(n).
+\]
+For $X\le x\le 2X-M$ one has $\widetilde B_h(x;M)=B_h(x;M)$. Outside this range there are only $O(M)$ values of $x$ for which $\widetilde B_h(x;M)\neq 0$, and trivially $\abs{\widetilde B_h(x;M)}\le M$. Hence
+\begin{equation}
+\label{eq:full-vs-truncated}
+\sum_{x\in\Z}\abs{\widetilde B_h(x;M)}^2=E_h(M;X)+O(M^3).
+\end{equation}
+
+Expanding the square gives the exact block-energy identity
+\[
+\sum_{x\in\Z}\abs{\widetilde B_h(x;M)}^2
+=
+\sum_{|t|<M}(M-|t|)\sum_{n\in\Z}a_{h,X}(n)a_{h,X}(n+t).
+\]
+Since $X>|h|$ for $X$ large, we have $a_h(n)^2=1$ on $(X,2X]$, and so
+\[
+\sum_{n\in\Z}a_{h,X}(n)^2=X+O_h(1).
+\]
+For $t\ge 1$,
+\[
+\sum_{n\in\Z}a_{h,X}(n)a_{h,X}(n+t)=P_h(t;X),
+\]
+and the contribution of negative $t$ is the same by symmetry. Therefore
+\[
+\sum_{x\in\Z}\abs{\widetilde B_h(x;M)}^2
+=MX+2\sum_{1\le t<M}(M-t)P_h(t;X)+O_h(M).
+\]
+Combining this with \eqref{eq:full-vs-truncated} proves \eqref{eq:energy-profile}.
+\end{proof}
+
+\begin{corollary}[Discrete derivative of the energy profile]
+\label{cor:discrete-derivative}
+For every integer $1\le M\le H$,
+\begin{equation}
+\label{eq:discrete-derivative}
+E_h(M+1;X)-E_h(M;X)=X+2C_h(M;X)+O_h(M^2).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Subtract \eqref{eq:energy-profile} at $M+1$ and $M$. The diagonal term contributes $X$, while the quartic terms telescope to $2\sum_{1\le t\le M}P_h(t;X)=2C_h(M;X)$. The error term changes by $O_h(M^2)$.
+\end{proof}
+
+\begin{corollary}[A uniform slope criterion]
+\label{cor:uniform-slope-criterion}
+If
+\[
+\sup_{1\le M\le H}\abs{E_h(M+1;X)-E_h(M;X)-X}=o(XH),
+\]
+then \eqref{eq:short-block-criterion-conc} holds.
+\end{corollary}
+
+\begin{proof}
+By \eqref{eq:discrete-derivative},
+\[
+\sup_{1\le M\le H}\abs{C_h(M;X)}=o(XH)
+\]
+(because $M^2\ll H^2\asymp X=o(XH)$). Then
+\[
+\sum_{1\le t<H}(H-t)P_h(t;X)=\sum_{M=1}^{H-1}C_h(M;X)=o(XH^2),
+\]
+and now \eqref{eq:energy-profile} at $M=H$ yields
+\[
+E_h(H;X)=HX+o(XH^2)+O(H^3)=o(XH^2),
+\]
+since $HX\asymp X^{3/2}=o(X^2)=o(XH^2)$ and $H^3\asymp X^{3/2}=o(XH^2)$. The conclusion follows from Theorem~\ref{thm:short-block-criterion}.
+\end{proof}
+
+
+\begin{remark}[Signed Fej\'er cancellation and Abel summation]
+\label{rem:signed-fejer-abel}
+The preceding identities also explain a useful boundary of the method. If
+\[
+S_h(M;X):=\sum_{1\le t\le M}P_h(t;X),
+\]
+then the Fej\'er-weighted off-diagonal term satisfies the exact Abel identity
+\[
+\sum_{1\le t<H}(H-t)P_h(t;X)
+=\sum_{M=1}^{H-1}S_h(M;X).
+\]
+Consequently a signed hypothesis such as
+\[
+\sup_{1\le M\le H}\abs{S_h(M;X)}=o(XH)
+\]
+would imply the critical energy estimate by a direct summation-by-parts argument, together with Proposition~\ref{prop:energy-profile}. This signed route is deliberately not the same as the absolute first-moment hypothesis used in Theorem~\ref{thm:main}: signed Fej\'er cancellation can hide cancellation between positive and negative shell contributions, whereas the absolute first moment controls the total mass of large short blocks and feeds into the bad-block and packet reductions below.
+\end{remark}
+
+\section{Fourier reformulation and positive multiscale absorption}
+\label{sec:fourier}
+
+The discrete derivative identity naturally leads to a Fourier reformulation. The short-block energies are represented by Fej\'er kernels, while their discrete derivatives are represented by Dirichlet kernels; this is standard Fourier analysis on the torus \cite{zygmund1959trigonometric,grafakos2008classical}. This is the point at which the oscillatory obstruction is converted into a positive multiscale quantity.
+
+Define
+\[
+A_{h,X}(\alpha):=\sum_{X<n\le 2X}a_h(n)\ee{\alpha n},
+\qquad \alpha\in \R/\Z.
+\]
+For $M\ge 1$, let
+\[
+F_M(\alpha):=\left|\sum_{m=1}^M \ee{\alpha m}\right|^2,
+\qquad
+D_M(\alpha):=\sum_{|t|\le M}\ee{\alpha t}.
+\]
+
+\begin{proposition}[Fej\'er representation]
+\label{prop:fejer-representation}
+For every integer $M\ge 1$,
+\begin{equation}
+\label{eq:fejer-representation}
+E_h(M;X)=\int_0^1 \abs{A_{h,X}(\alpha)}^2F_M(\alpha)\,d\alpha+O_h(M^3).
+\end{equation}
+Moreover, for $1\le M\le H$,
+\begin{equation}
+\label{eq:dirichlet-increment}
+E_h(M+1;X)-E_h(M;X)=\int_0^1 \abs{A_{h,X}(\alpha)}^2D_M(\alpha)\,d\alpha+O_h(M^2).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let $K_M(n):=\mathbf 1_{1\le n\le M}$. Then
+\[
+\widetilde B_h(x;M)=(a_{h,X}*K_M)(x),
+\]
+where $a_{h,X}$ is as in the proof of Proposition~\ref{prop:energy-profile}. By Parseval on $\Z$,
+\[
+\sum_{x\in\Z}\abs{\widetilde B_h(x;M)}^2
+=\int_0^1\abs{A_{h,X}(\alpha)}^2\abs{\widehat K_M(\alpha)}^2\,d\alpha
+=\int_0^1\abs{A_{h,X}(\alpha)}^2F_M(\alpha)\,d\alpha.
+\]
+Using \eqref{eq:full-vs-truncated} proves \eqref{eq:fejer-representation}. The identity
+\[
+F_{M+1}(\alpha)-F_M(\alpha)=D_M(\alpha)
+\]
+follows by comparing Fourier coefficients, and then \eqref{eq:dirichlet-increment} follows by subtraction.
+\end{proof}
+
+\begin{lemma}[A positive multiscale domination]
+\label{lem:positive-domination}
+For every integer $H\ge 1$ and every $\alpha\in\R/\Z$,
+\begin{equation}
+\label{eq:positive-domination}
+\sup_{1\le L\le H}\abs{D_L(\alpha)-1}
+\ll
+\sum_{M=1}^H \frac{F_M(\alpha)}{M^2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $\delta:=\norm{\alpha}$, where $\norm{\alpha}$ denotes the distance from $\alpha$ to the nearest integer. The standard Dirichlet-kernel bound gives
+\[
+\sup_{1\le L\le H}\abs{D_L(\alpha)-1}\ll \min(H,\delta^{-1}).
+\]
+It therefore suffices to show
+\[
+\sum_{M=1}^H \frac{F_M(\alpha)}{M^2}\gg \min(H,\delta^{-1}).
+\]
+If $\delta\le 1/(2H)$, then $\delta\le 1/(2M)$ for every $1\le M\le H$, and the usual estimate
+\[
+F_M(\alpha)=\left|\frac{\sin(\pi M\alpha)}{\sin(\pi\alpha)}\right|^2\gg M^2
+\]
+shows that the sum is $\gg H$.
+
+If $\delta>1/(2H)$, let $M_0:=\lfloor (2\delta)^{-1}\rfloor$. Then $1\le M_0\le H$ and still $\delta\le 1/(2M)$ for every $1\le M\le M_0$, so $F_M(\alpha)\gg M^2$ throughout that range. Hence
+\[
+\sum_{M=1}^H \frac{F_M(\alpha)}{M^2}\gg M_0\asymp \delta^{-1}.
+\]
+This proves \eqref{eq:positive-domination}.
+\end{proof}
+
+\begin{theorem}[Positive multiscale criterion]
+\label{thm:positive-multiscale-criterion}
+Assume that
+\begin{equation}
+\label{eq:positive-multiscale-hyp}
+\sum_{M=1}^{H}\frac{E_h(M;X)}{M^2}=o(XH)
+\qquad (X\to\infty).
+\end{equation}
+Then \eqref{eq:short-block-criterion-conc} holds.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:fejer-representation},
+\[
+\int_0^1 \abs{A_{h,X}(\alpha)}^2\,d\alpha
+=\sum_{X<n\le 2X}a_h(n)^2
+=X+O_h(1).
+\]
+Hence, by Corollary~\ref{cor:uniform-slope-criterion}, it is enough to show that
+\[
+\sup_{1\le L\le H}\left|\int_0^1 \abs{A_{h,X}(\alpha)}^2(D_L(\alpha)-1)\,d\alpha\right|=o(XH).
+\]
+Applying Lemma~\ref{lem:positive-domination}, then interchanging sum and integral, and finally using Proposition~\ref{prop:fejer-representation}, we obtain
+\[
+\sup_{1\le L\le H}\left|\int_0^1 \abs{A_{h,X}(\alpha)}^2(D_L(\alpha)-1)\,d\alpha\right|
+\ll
+\sum_{M=1}^{H}\frac{1}{M^2}\int_0^1 \abs{A_{h,X}(\alpha)}^2F_M(\alpha)\,d\alpha
+\]
+\[
+=
+\sum_{M=1}^{H}\frac{E_h(M;X)}{M^2}+O\!\left(\sum_{M=1}^{H}M\right)
+=
+\sum_{M=1}^{H}\frac{E_h(M;X)}{M^2}+O(H^2).
+\]
+Since $H^2\asymp X=o(XH)$, hypothesis \eqref{eq:positive-multiscale-hyp} yields the desired bound.
+\end{proof}
+
+\section{Dyadic shells, tree weights, and harmonic weights}
+\label{sec:dyadic-shells}
+
+We next reorganize the multiscale sum shell-by-shell in the shift variable $t$. This isolates the precise dyadic local cancellation required of the quartic family.
+
+Let $J\ge 0$ be defined by
+\[
+2^{J-1}<H\le 2^J.
+\]
+For $0\le k\le J-1$, write
+\[
+I_k:=\{t\in\Z: 2^k\le t<2^{k+1}\}.
+\]
+For integers $u\in I_k$, define the shell partial sums
+\[
+Q_{h,k}(u;X):=\sum_{2^k\le t\le u} P_h(t;X).
+\]
+Also define the tree-stopped multiscale energy
+\[
+\mathcal T_h(X):=\sum_{j=0}^{J}\frac{E_h(2^j;X)}{2^j}.
+\]
+
+\begin{proposition}[Tree weight identity]
+\label{prop:tree-weight-identity}
+One has
+\begin{equation}
+\label{eq:tree-weight-identity}
+\mathcal T_h(X)=X(J+1)+2\sum_{1\le t<2^J}\omega_J(t)P_h(t;X)+O_h(H^2),
+\end{equation}
+where
+\[
+\omega_J(t):=\sum_{\substack{0\le j\le J \\ 2^j>t}}\left(1-\frac{t}{2^j}\right).
+\]
+If $t\in I_k$, then
+\begin{equation}
+\label{eq:omega-affine}
+\omega_J(t)=A_k-B_kt,
+\qquad
+A_k:=J-k,
+\qquad
+B_k:=\sum_{j=k+1}^{J}2^{-j}.
+\end{equation}
+In particular,
+\begin{equation}
+\label{eq:omega-size}
+A_k\ll J-k+1,
+\qquad
+B_k\asymp 2^{-k}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Insert \eqref{eq:energy-profile} with $M=2^j$ into the definition of $\mathcal T_h(X)$ and interchange the order of summation. For $t\in I_k$, the condition $2^j>t$ is equivalent to $j\ge k+1$, which gives the affine formula \eqref{eq:omega-affine}. The size bounds are immediate.
+\end{proof}
+
+\begin{proposition}[Harmonic weight identity]
+\label{prop:harmonic-weight-identity}
+Define
+\[
+\Sigma_h(X):=\sum_{M=1}^{H}\frac{E_h(M;X)}{M^2}.
+\]
+Then
+\begin{equation}
+\label{eq:harmonic-weight-identity}
+\Sigma_h(X)=X\sum_{M=1}^{H}\frac1M+2\sum_{1\le t<H}\nu_H(t)P_h(t;X)+O_h(H^2),
+\end{equation}
+where
+\[
+\nu_H(t):=\sum_{M=t+1}^{H}\frac{M-t}{M^2}
+=\sum_{M=t+1}^{H}\frac1M-t\sum_{M=t+1}^{H}\frac1{M^2}.
+\]
+Moreover, if $t\in I_k$, then
+\begin{equation}
+\label{eq:nu-size}
+\nu_H(t)\ll J-k+1,
+\end{equation}
+and for $2^k\le u<2^{k+1}-1$,
+\begin{equation}
+\label{eq:nu-difference}
+\nu_H(u)-\nu_H(u+1)=\sum_{M=u+1}^{H}\frac1{M^2}\asymp 2^{-k}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Insert \eqref{eq:energy-profile} into the definition of $\Sigma_h(X)$ and interchange the order of summation:
+\[
+\Sigma_h(X)
+=
+X\sum_{M=1}^{H}\frac1M+2\sum_{1\le t<H}\left(\sum_{M=t+1}^{H}\frac{M-t}{M^2}\right)P_h(t;X)+O_h\!\left(\sum_{M=1}^{H}M\right).
+\]
+Since $\sum_{M=1}^{H}M\ll H^2$, this is \eqref{eq:harmonic-weight-identity}.
+
+If $t\in I_k$, then
+\[
+\nu_H(t)\le \sum_{M=t+1}^{H}\frac1M \ll \log\!\frac{H}{t+1}+1\ll J-k+1,
+\]
+which gives \eqref{eq:nu-size}. Finally,
+\[
+\nu_H(u)-\nu_H(u+1)
+=
+\frac1{(u+1)^2}+\sum_{M=u+2}^{H}\frac1{M^2}
+=
+\sum_{M=u+1}^{H}\frac1{M^2},
+\]
+and since $u\asymp 2^k$ on $I_k$, this is $\asymp 2^{-k}$. This proves \eqref{eq:nu-difference}.
+\end{proof}
+
+\begin{theorem}[Dyadic local quartic criterion]
+\label{thm:dyadic-local-quartic-criterion}
+Assume that
+\begin{equation}
+\label{eq:dyadic-local-quartic-hyp}
+\sup_{\substack{0\le k\le J-1 \\ u\in I_k}}\frac{\abs{Q_{h,k}(u;X)}}{X2^k}\to 0
+\qquad (X\to\infty).
+\end{equation}
+Then \eqref{eq:positive-multiscale-hyp} holds, hence \eqref{eq:short-block-criterion-conc} holds.
+\end{theorem}
+
+\begin{proof}
+We apply shellwise summation by parts to the weighted quartic sum in \eqref{eq:harmonic-weight-identity}. For a fixed shell $I_k=[2^k,2^{k+1}-1]$, write
+\[
+\Sigma_k:=\sum_{t\in I_k}\nu_H(t)P_h(t;X).
+\]
+Then
+\[
+\Sigma_k
+=
+\nu_H(2^{k+1}-1)Q_{h,k}(2^{k+1}-1;X)
++
+\sum_{u=2^k}^{2^{k+1}-2}\bigl(\nu_H(u)-\nu_H(u+1)\bigr)Q_{h,k}(u;X).
+\]
+Using \eqref{eq:nu-size}, \eqref{eq:nu-difference}, and hypothesis \eqref{eq:dyadic-local-quartic-hyp}, we obtain
+\[
+\abs{\Sigma_k}
+\ll
+(J-k+1)\sup_{u\in I_k}\abs{Q_{h,k}(u;X)}
++
+2^{-k}\sum_{u=2^k}^{2^{k+1}-2}\sup_{v\in I_k}\abs{Q_{h,k}(v;X)}
+\]
+\[
+\ll
+(J-k+1)\sup_{u\in I_k}\abs{Q_{h,k}(u;X)}
+=
+ o\!\bigl(X(J-k+1)2^k\bigr).
+\]
+Summing over $k$ and using
+\[
+\sum_{k=0}^{J-1}(J-k+1)2^k\ll 2^J\asymp H,
+\]
+we deduce
+\[
+\sum_{1\le t<H}\nu_H(t)P_h(t;X)=o(XH).
+\]
+Also
+\[
+X\sum_{M=1}^{H}\frac1M\ll X\log H=o(XH),
+\qquad
+H^2=o(XH).
+\]
+Hence \eqref{eq:harmonic-weight-identity} gives
+\[
+\Sigma_h(X)=o(XH),
+\]
+which is exactly \eqref{eq:positive-multiscale-hyp}. The conclusion now follows from Theorem~\ref{thm:positive-multiscale-criterion}.
+\end{proof}
+
+\begin{remark}
+The dyadic local criterion isolates a scale-by-scale version of the quartic cancellation problem. The input is local in the $t$-variable and is therefore naturally compatible with shellwise stopping and summation-by-parts arguments.
+\end{remark}
+
+\section{A short-interval first-moment theorem}
+\label{sec:first-moment}
+
+We now isolate the role of the absolute first moment. There is a direct implication from
+\[
+\sup_{1\le M\le H}
+\frac{1}{XM}\sum_{X\le x\le 2X-M}\abs{B_h(x;M)}=o(1)
+\]
+to the critical short-block criterion: at the single scale $M=H$, the pointwise bound $\abs{B_h(x;H)}\le H$ gives
+\[
+\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2
+\le
+H\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}=o(XH^2).
+\]
+Thus the first-moment implication itself is elementary once absolute values are available. We nevertheless keep the dyadic-shell bridge because it identifies exactly which local quartic shell quantities are controlled by the same absolute first moments, and these shell quantities feed the packet analysis below.
+
+\begin{proposition}[Shells are dominated by first moments]
+\label{prop:shells-dominated-by-first-moments}
+Fix $0\le k\le J-1$ and $u\in I_k$. Set
+\[
+T:=u-2^k+1
+\qquad (1\le T\le 2^k).
+\]
+Then
+\begin{equation}
+\label{eq:shells-dominated-by-first-moments}
+\abs{Q_{h,k}(u;X)}
+\le
+\sum_{X\le x\le 2X-T}\abs{B_h(x;T)}+O_h(T^2).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Expand the definition of $Q_{h,k}(u;X)$:
+\[
+Q_{h,k}(u;X)=\sum_{t=2^k}^{u}\sum_{X<n\le 2X-t}a_h(n)a_h(n+t).
+\]
+Interchanging the order of summation gives
+\[
+Q_{h,k}(u;X)=\sum_{X<n\le 2X-2^k} a_h(n)\sum_{2^k\le t\le \min(u,2X-n)}a_h(n+t).
+\]
+Split at $n\le 2X-u$. The main range contributes
+\[
+\sum_{X<n\le 2X-u} a_h(n)\sum_{t=2^k}^{u}a_h(n+t),
+\]
+and the inner sum is exactly $B_h(n+2^k-1;T)$. Taking absolute values yields
+\[
+\abs{\sum_{X<n\le 2X-u} a_h(n)\sum_{t=2^k}^{u}a_h(n+t)}
+\le
+\sum_{X\le x\le 2X-T}\abs{B_h(x;T)}.
+\]
+The boundary range $2X-u<n\le 2X-2^k$ has at most $T-1$ values of $n$, and for each such $n$ the inner sum has length at most $T$, so its total contribution is $O(T^2)$. This proves \eqref{eq:shells-dominated-by-first-moments}.
+\end{proof}
+
+\begin{theorem}[Short-interval first-moment theorem]
+\label{thm:first-moment-criterion}
+Assume that
+\begin{equation}
+\label{eq:first-moment-criterion-hyp}
+\sup_{1\le M\le H}
+\frac{1}{XM}
+\sum_{X\le x\le 2X-M}\abs{B_h(x;M)}\to 0
+\qquad (X\to\infty).
+\end{equation}
+Then \eqref{eq:short-block-criterion-conc} holds.
+\end{theorem}
+
+\begin{proof}
+Apply \eqref{eq:first-moment-criterion-hyp} at $M=H$. Since $\abs{a_h(n)}\le 1$, every $H$-block satisfies $\abs{B_h(x;H)}\le H$. Hence
+\[
+\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2
+\le
+H\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}=o(XH^2).
+\]
+The critical short-block criterion, Theorem~\ref{thm:short-block-criterion}, now gives \eqref{eq:short-block-criterion-conc}.
+\end{proof}
+
+\begin{corollary}[First moments also control dyadic local quartic shells]
+\label{cor:first-moment-dyadic-shells}
+Under the hypothesis \eqref{eq:first-moment-criterion-hyp}, the dyadic local quartic condition \eqref{eq:dyadic-local-quartic-hyp} holds.
+\end{corollary}
+
+\begin{proof}
+Fix a shell $I_k$ and a point $u\in I_k$, and let
+\[
+T:=u-2^k+1
+\qquad (1\le T\le 2^k\le H).
+\]
+By Proposition~\ref{prop:shells-dominated-by-first-moments},
+\[
+\abs{Q_{h,k}(u;X)}
+\le
+\sum_{X\le x\le 2X-T}\abs{B_h(x;T)}+O_h(T^2).
+\]
+The hypothesis \eqref{eq:first-moment-criterion-hyp} applies uniformly for every $1\le T\le H$, so
+\[
+\sum_{X\le x\le 2X-T}\abs{B_h(x;T)}=o(XT).
+\]
+Since $T\le H\asymp X^{1/2}$, the boundary term also satisfies
+\[
+T^2\le HT=o(XT).
+\]
+Hence
+\[
+\abs{Q_{h,k}(u;X)}=o(XT)=o(X2^k)
+\]
+uniformly in $k$ and $u$, which is exactly \eqref{eq:dyadic-local-quartic-hyp}.
+\end{proof}
+
+\section{A fixed-shift local \texorpdfstring{$U^2$}{U2} reduction}
+\label{sec:local-u2}
+
+We next record the local $U^2$ reduction in the normalization used in the formal development. The point which matters for the sequel is that the normalized local quantity below is a fourth-power quantity. Consequently the correct block estimate is a fourth-power estimate, not a linear estimate in the normalized fourth-power mass.
+
+For a finitely supported function $f:\Z\to\C$ and a finite interval $I\subset\Z$, put
+\[
+C_f(I;t):=\sum_{n\in I}\1_I(n+t)f(n+t)\overline{f(n)}.
+\]
+Define
+\[
+U_2^4(f;I):=\sum_{-|I|\le t\le |I|}\abs{C_f(I;t)}^2,
+\qquad
+\mathcal U_2(f;I):=\frac{U_2^4(f;I)}{\max(|I|,1)^3}.
+\]
+For $x,M\in\N$, let
+\[
+I_{x,M}:=\{x+1,x+2,\ldots,x+M\}\subset\Z
+\]
+and let $\widetilde a:\Z\to\C$ be the zero extension of $a$ from $\N$ to $\Z$, viewed as complex-valued. Thus
+\[
+B_a(x;M)=\sum_{x<n\le x+M}a(n)=\sum_{n\in I_{x,M}}\widetilde a(n).
+\]
+When $a=a_h$, we write $B_h(x;M)$ as before.
+
+\begin{proposition}[Correlation expansion]
+\label{prop:local-u2-correlation-expansion}
+For every $a:\N\to\R$ and every $x,M\in\N$,
+\[
+\sum_{-M\le t\le M} C_{\widetilde a}(I_{x,M};t)
+=
+\left(\sum_{n\in I_{x,M}}\widetilde a(n)\right)
+\overline{\left(\sum_{n\in I_{x,M}}\widetilde a(n)\right)}.
+\]
+Equivalently,
+\[
+\sum_{-M\le t\le M} C_{\widetilde a}(I_{x,M};t)
+=B_a(x;M)\overline{B_a(x;M)}.
+\]
+\end{proposition}
+
+\begin{proof}
+Expand the left-hand side and interchange the two finite sums:
+\[
+\sum_{-M\le t\le M}\sum_{n\in I_{x,M}}
+\1_{I_{x,M}}(n+t)\widetilde a(n+t)\overline{\widetilde a(n)}.
+\]
+For fixed $n\in I_{x,M}$, the change of variables $m=n+t$ bijects the admissible shifts with $m\in I_{x,M}$. Hence the inner sum is
+\[
+\sum_{m\in I_{x,M}}\widetilde a(m)\overline{\widetilde a(n)}.
+\]
+Summing in $n$ gives
+\[
+\sum_{n\in I_{x,M}}\left(\sum_{m\in I_{x,M}}\widetilde a(m)\right)
+\overline{\widetilde a(n)}
+=
+\left(\sum_{m\in I_{x,M}}\widetilde a(m)\right)
+\overline{\left(\sum_{n\in I_{x,M}}\widetilde a(n)\right)}.
+\]
+\end{proof}
+
+\begin{proposition}[Fourth-power local $U^2$ block estimate]
+\label{prop:local-u2-fourth-power-block}
+For every $a:\N\to\R$, every $x\in\N$, and every $M\ge1$,
+\[
+\abs{B_a(x;M)}^4
+\le
+3M^4\,\mathcal U_2(\widetilde a;I_{x,M}).
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:local-u2-correlation-expansion},
+\[
+\abs{B_a(x;M)}^4
+=
+\left|\sum_{-M\le t\le M}C_{\widetilde a}(I_{x,M};t)\right|^2.
+\]
+Cauchy's inequality gives
+\[
+\left|\sum_{-M\le t\le M}C_{\widetilde a}(I_{x,M};t)\right|^2
+\le
+(2M+1)\sum_{-M\le t\le M}\abs{C_{\widetilde a}(I_{x,M};t)}^2.
+\]
+Since $M\ge1$, $2M+1\le3M$. Therefore
+\[
+\abs{B_a(x;M)}^4
+\le
+3M\,U_2^4(\widetilde a;I_{x,M}).
+\]
+Finally $|I_{x,M}|=M$, so
+\[
+U_2^4(\widetilde a;I_{x,M})
+=M^3\mathcal U_2(\widetilde a;I_{x,M}),
+\]
+which gives the claimed bound.
+\end{proof}
+
+\begin{remark}[The missing fourth root]
+\label{rem:local-u2-fourth-root}
+Because $\mathcal U_2$ is normalized as a fourth-power quantity, Proposition~\ref{prop:local-u2-fourth-power-block} implies only
+\[
+\abs{B_a(x;M)}
+\le
+3^{1/4}M\,\mathcal U_2(\widetilde a;I_{x,M})^{1/4}.
+\]
+A pointwise estimate of the form
+\[
+\abs{B_a(x;M)}\le C M\,\mathcal U_2(\widetilde a;I_{x,M})
+\]
+would use the fourth-power normalized quantity linearly. That is not the estimate used below. The averaged first-moment implication is instead obtained from the fourth-power estimate by a scalar Young inequality.
+\end{remark}
+
+\begin{lemma}[Young form of the fourth-root step]
+\label{lem:young-fourth-scaled}
+Let $y,q,M,\eta\ge0$, with $M>0$ and $\eta>0$. If
+\[
+y^4\le3M^4q,
+\]
+then
+\[
+y\le \eta M+\frac{3}{\eta^3}Mq.
+\]
+\end{lemma}
+
+\begin{proof}
+Put $t=y/M$. Then $t\ge0$ and $t^4\le3q$. If $t\le\eta$, the claim follows immediately. Otherwise $\eta\le t$, hence
+\[
+t\le \frac{t^4}{\eta^3}\le\frac{3q}{\eta^3}.
+\]
+Multiplying by $M$ and adding the harmless term $\eta M$ gives the displayed estimate in both cases.
+\end{proof}
+
+\begin{theorem}[Uniform fourth-power local $U^2$ criterion for fixed $h$]
+\label{thm:local-u2-criterion}
+Assume that
+\begin{equation}
+\label{eq:local-u2-criterion-hyp}
+\sup_{1\le M\le H}
+\frac{1}{X}
+\sum_{X\le x\le 2X-M}
+\mathcal U_2(\widetilde a_h;I_{x,M})
+\to0
+\qquad (X\to\infty).
+\end{equation}
+Then
+\[
+A_h(N)=o(N)
+\qquad (N\to\infty).
+\]
+\end{theorem}
+
+\begin{proof}
+We first derive the first-moment hypothesis. Fix $\varepsilon>0$, set $\eta:=\varepsilon/2$, and put
+\[
+K:=\frac{3}{\eta^3}.
+\]
+Apply \eqref{eq:local-u2-criterion-hyp} with the tolerance $\delta:=\varepsilon/(2K)$. For all sufficiently large $X$, uniformly for $1\le M\le H$,
+\[
+\sum_{X\le x\le2X-M}\mathcal U_2(\widetilde a_h;I_{x,M})
+\le \delta X.
+\]
+For each such $x,M$, Proposition~\ref{prop:local-u2-fourth-power-block} and Lemma~\ref{lem:young-fourth-scaled} give
+\[
+\abs{B_h(x;M)}
+\le
+\eta M+K M\mathcal U_2(\widetilde a_h;I_{x,M}).
+\]
+Summing over $X\le x\le2X-M$, and using that this interval has at most $X$ integer starting points, gives
+\[
+\sum_{X\le x\le2X-M}\abs{B_h(x;M)}
+\le
+\eta MX+KM\sum_{X\le x\le2X-M}\mathcal U_2(\widetilde a_h;I_{x,M}).
+\]
+The last sum is at most $\delta X$, hence
+\[
+\sum_{X\le x\le2X-M}\abs{B_h(x;M)}
+\le
+\frac{\varepsilon}{2}MX+KM\frac{\varepsilon}{2K}X
+=\varepsilon XM.
+\]
+This is precisely \eqref{eq:first-moment-criterion-hyp}. The conclusion follows from Theorem~\ref{thm:first-moment-criterion}.
+\end{proof}
+
+\begin{remark}[Why the natural $U^3$ upgrade still misses fixed $h$]
+A tempting way to force the local input is to rewrite the block sum as a mean of a discrete derivative and then try to control that derivative by a local $U^3$ norm of $\lambda$. On a finite abelian group $G$ one has the exact identity from Gowers-norm formalism \cite{gowers2001szemeredi,taovu2006additive}
+\begin{equation}
+\label{eq:u3-derivative-identity}
+\|f\|_{U^3(G)}^8 = \mathbb E_{r\in G}\,\|\Delta_r f\|_{U^2(G)}^4,
+\qquad
+\Delta_r f(x):=f(x+r)\overline{f(x)}.
+\end{equation}
+Thus a local $U^3$ bound for $\lambda$ controls fourth powers of local $U^2$ quantities for the derivative sequences $\lambda(n)\lambda(n+r)$ only \emph{after averaging over the shift parameter $r$}. In schematic form this yields bounds of the shape
+\begin{equation}
+\label{eq:schematic-averaged-r-u2}
+\frac1X\sum_x\frac1M\sum_{|r|\ll M}
+\|\lambda(\cdot)\lambda(\cdot+r)\|_{U^2([x+1,x+M])}^4=o(1),
+\end{equation}
+which are consistent with a single exceptional fixed shift $r=h$. Consequently the local $U^3$ route proves only an averaged-in-$r$ version of the fixed-shift local $U^2$ criterion, and does not remove the need for a genuinely fixed-shift argument.
+\end{remark}
+
+\section{Bad blocks, projected packets, and the remaining bottleneck}
+\label{sec:projected-packets}
+
+We now turn to the endpoint of the reduction developed above. Before introducing packets, we record the precise reason why the prime-shear symmetry can only hold after projection to the divisible slice.
+
+For a finite interval $J\subset \Z$, define the local Fourier sum
+\[
+A_J^{(\alpha)}(\xi):=\sum_{n\in J} g_\alpha(n)\,\ee{-\xi n}.
+\]
+If $p\nmid h$ is prime, decompose by residue classes modulo $p$:
+\[
+A_J^{(\alpha)}(\xi)=\sum_{r=0}^{p-1}A_{J,r}^{(\alpha)}(\xi),
+\qquad
+A_{J,r}^{(\alpha)}(\xi):=\sum_{\substack{n\in J\\ n\equiv r\, (p)}} g_\alpha(n)\,\ee{-\xi n}.
+\]
+The next proposition is the exact correction to the naive full-block affine-shear statement.
+
+\begin{proposition}[No direct prime-shear consistency on the full block]
+\label{prop:no-full-block-affine-shear}
+Let $p\nmid h$ be prime and let $J\subset\Z$ be a finite interval. Then the $r=0$ slice satisfies the exact identity
+\begin{equation}
+\label{eq:projected-local-fourier-shear}
+A_{J,0}^{(\alpha)}(\xi)
+=
+-\,A_{J/p}^{(p^2\alpha)}\!\left(p\xi-\frac{\alpha p(p-1)}{2}\right)
++O(1),
+\end{equation}
+where $J/p:=\{m\in\Z:\ pm\in J\}$ and the $O(1)$ term is a boundary error. By contrast, for each $r\neq 0$ one has only the tautological expression
+\[
+A_{J,r}^{(\alpha)}(\xi)
+=
+\sum_{\substack{m\in\Z\\ pm+r\in J}}
+\lambda(pm+r)
+\,\ee{Q_\alpha(pm+r)-\xi(pm+r)},
+\]
+for which complete multiplicativity gives no simplification. In particular, there is no full-block affine-shear law of the shape
+\[
+A_J^{(\alpha)}(\xi)
+\approx
+c_{p,\alpha,\xi}\,A_{J'}^{(\beta)}(T_p\xi)
+\]
+up to boundary error alone, because the contribution of the nonzero residue classes can be as large as the whole sum.
+\end{proposition}
+
+\begin{proof}
+On the divisible slice, write $n=pm$. Since $\lambda(pm)=-\lambda(m)$, we have
+\[
+A_{J,0}^{(\alpha)}(\xi)
+=
+-\sum_{m\in J/p}\lambda(m)\,\ee{Q_\alpha(pm)-p\xi m} + O(1),
+\]
+where the $O(1)$ term accounts for endpoints when $J$ is not exactly a union of residue classes modulo $p$. A direct calculation gives
+\[
+Q_\alpha(pm)-Q_{p^2\alpha}(m)=\frac{\alpha p(p-1)}{2}\,m,
+\]
+whence
+\[
+Q_\alpha(pm)-p\xi m
+=
+Q_{p^2\alpha}(m)-\left(p\xi-\frac{\alpha p(p-1)}{2}\right)m.
+\]
+Substituting this identity proves \eqref{eq:projected-local-fourier-shear}.
+
+For $r\neq 0$, writing $n=pm+r$ yields
+\[
+A_{J,r}^{(\alpha)}(\xi)
+=
+\sum_{\substack{m\in\Z\\ pm+r\in J}}
+\lambda(pm+r)
+\,\ee{Q_\alpha(pm+r)-\xi(pm+r)},
+\]
+and there is no relation between $\lambda(pm+r)$ and $\lambda(m)$ furnished by complete multiplicativity. Therefore the uncontrolled nonzero residue classes cannot be absorbed into a boundary error, and the full-block sum admits no exact analogue of the divisible-slice shear identity.
+\end{proof}
+
+\begin{remark}[What the preceding proposition means]
+Proposition~\ref{prop:no-full-block-affine-shear} shows that the arithmetic self-similarity lives only on the sparse slice $n\equiv 0 \pmod p$. For the original derivative sequence $a_h(n)=\lambda(n)\lambda(n+h)$ the situation is even less symmetric, since on that slice one has
+\[
+a_h(pm)=\lambda(pm)\lambda(pm+h),
+\]
+which does not simplify multiplicatively when $p\nmid h$. Thus the correct next target is not a full-block prime-shear law, but a theorem that manufactures a projector or weight selecting enough of the divisible slice while preserving the mass coming from a bad fixed-shift block.
+\end{remark}
+
+Let $I\subset\Z$ be a finite interval of length $L$, let $\alpha\in\R$, and define
+\[
+S_I(\alpha):=\sum_{n\in I}a_h(n)\,\ee{\alpha n}.
+\]
+To linearize the shift $h$, introduce the quadratic phase
+\[
+Q_\alpha(n):=\frac{\alpha}{2h}n(n-h)
+\qquad (n\in\Z),
+\]
+so that
+\[
+Q_\alpha(n+h)-Q_\alpha(n)=\alpha n.
+\]
+Define
+\[
+g_\alpha(n):=\lambda(n)\,\ee{Q_\alpha(n)}.
+\]
+Then
+\[
+g_\alpha(n+h)\overline{g_\alpha(n)}=a_h(n)\,\ee{\alpha n},
+\]
+and therefore
+\[
+S_I(\alpha)=\sum_{n\in I}g_\alpha(n+h)\overline{g_\alpha(n)}.
+\]
+
+\begin{proposition}[A bad block forces an unprojected packet]
+\label{prop:bad-block-packet}
+Define
+\[
+\mathcal D_{I,\alpha}
+:=
+\sum_{|r|<L}(L-|r|)\,\ee{\alpha r}
+\sum_{n\in\Z}a_h(n+r)a_h(n)\,\mathbf 1_I(n+r)\mathbf 1_I(n).
+\]
+Then
+\[
+\mathcal D_{I,\alpha}=|S_I(\alpha)|^2.
+\]
+In particular, if $|S_I(\alpha)|\ge \eta L$, then $\mathcal D_{I,\alpha}\ge \eta^2L^2$.
+\end{proposition}
+
+\begin{proof}
+Expanding the square gives
+\[
+|S_I(\alpha)|^2
+=
+\sum_{u,v\in I}a_h(u)a_h(v)\,\ee{\alpha(u-v)}.
+\]
+Write $r=u-v$. For fixed $r$ with $|r|<L$, the number of pairs $(u,v)\in I^2$ with $u-v=r$ is $L-|r|$, and there are no such pairs when $|r|\ge L$. Hence
+\[
+|S_I(\alpha)|^2
+=
+\sum_{|r|<L}(L-|r|)\,\ee{\alpha r}
+\sum_{n\in\Z}a_h(n+r)a_h(n)\,\mathbf 1_I(n+r)\mathbf 1_I(n),
+\]
+which is exactly $\mathcal D_{I,\alpha}$.
+\end{proof}
+
+The packet $\mathcal D_{I,\alpha}$ is the exact unprojected delta/off-diagonal object forced by a bad block.
+The next theorem shows that one can already manufacture a genuine projected \emph{delta} packet on a small prime-divisible slice.
+
+\begin{theorem}[Small-prime selector for a projected delta packet]
+\label{thm:small-prime-projected-delta}
+Fix $0<\eta\le 1$. There exists a function $P_\eta(L)\to\infty$ with $P_\eta(L)=L^{o(1)}$ such that the following holds for all sufficiently large $L$. Let $I\subset\Z$ be an interval of length $L$, let $\alpha\in\R$, and assume that
+\[
+|S_I(\alpha)|\ge \eta L.
+\]
+Then there exists a prime $p\le P_\eta(L)$ with $p\nmid h$ such that
+\begin{equation}
+\label{eq:small-prime-slice-bias}
+\left|\sum_{\substack{n\in I\\ p\mid n}} a_h(n)\,\ee{\alpha n}\right|
+\gg_\eta \frac{L}{p}.
+\end{equation}
+Consequently the projected delta packet
+\begin{equation}
+\label{eq:projected-delta-packet}
+\mathcal D^{(p)}_{I,\alpha}
+:=
+\sum_{r\in\Z}\sum_{n\in\Z}
+ a_h(n+r)a_h(n)\,\ee{\alpha r}
+\mathbf 1_I(n+r)\mathbf 1_I(n)
+\mathbf 1_{p\mid n}\mathbf 1_{p\mid n+r}
+\end{equation}
+has size
+\begin{equation}
+\label{eq:projected-delta-packet-lb}
+\mathcal D^{(p)}_{I,\alpha}
+\gg_\eta
+\frac{L^2}{p^2}.
+\end{equation}
+Since $p\mid n$ and $p\mid n+r$ force $r=p\ell$, one may also rewrite \eqref{eq:projected-delta-packet} as
+\begin{equation}
+\label{eq:projected-delta-packet-step-p}
+\mathcal D^{(p)}_{I,\alpha}
+=
+\sum_{\ell\in\Z}\ee{\alpha p\ell}
+\sum_{n\in\Z} a_h(n+p\ell)a_h(n)
+\mathbf 1_I(n+p\ell)\mathbf 1_I(n)\mathbf 1_{p\mid n}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Choose any function $P_\eta(L)\to\infty$ satisfying
+\[
+\sum_{\substack{p\le P_\eta(L)\\ p\nmid h}}\frac1p\to\infty
+\qquad\text{and}\qquad
+\frac{\pi(P_\eta(L))^2}{L}\to 0
+\qquad (L\to\infty),
+\]
+for instance $P_\eta(L):=\exp(\sqrt{\log L})$. Let
+\[
+\mathcal P:=\{p\le P_\eta(L):\ p\nmid h\},
+\qquad
+w(n):=\sum_{p\in\mathcal P}\mathbf 1_{p\mid n}.
+\]
+Write
+\[
+S:=\sum_{n\in I} a_h(n)\,\ee{\alpha n}=S_I(\alpha),
+\qquad
+S_p:=\sum_{\substack{n\in I\\ p\mid n}} a_h(n)\,\ee{\alpha n},
+\qquad
+\mu:=\frac1L\sum_{n\in I}w(n).
+\]
+Then
+\[
+\sum_{p\in\mathcal P}S_p=\sum_{n\in I} w(n)a_h(n)\,\ee{\alpha n}.
+\]
+Centering $w$ at its mean gives
+\[
+\sum_{p\in\mathcal P}S_p
+=
+\mu S+
+\sum_{n\in I}(w(n)-\mu)a_h(n)\,\ee{\alpha n}.
+\]
+Hence, by Cauchy--Schwarz,
+\[
+\left|\sum_{p\in\mathcal P}S_p\right|
+\ge
+\mu|S|-
+\left(\sum_{n\in I}(w(n)-\mu)^2\right)^{1/2}L^{1/2}
+=
+\mu|S|-\sigma L,
+\]
+where
+\[
+\sigma^2:=\frac1L\sum_{n\in I}(w(n)-\mu)^2.
+\]
+The standard first and second moment estimates for the divisor-counting weight $w$ give
+\[
+\mu=
+\sum_{p\in\mathcal P}\frac1p+O\!\left(\frac{\pi(P_\eta(L))}{L}\right)
+\]
+and
+\[
+\sigma^2\ll
+\sum_{p\in\mathcal P}\frac1p
++
+\frac{\pi(P_\eta(L))^2}{L}.
+\]
+Because $\sum_{p\in\mathcal P}1/p\to\infty$ and $\pi(P_\eta(L))^2/L\to 0$, we have $\sigma/\mu\to 0$. Therefore, for all sufficiently large $L$,
+\[
+\left|\sum_{p\in\mathcal P}S_p\right|\ge \frac{\eta}{2}\mu L.
+\]
+If every $p\in\mathcal P$ satisfied $|S_p|<(\eta/2)N_p(I)$, where
+\[
+N_p(I):=\#\{n\in I:\ p\mid n\},
+\]
+then
+\[
+\sum_{p\in\mathcal P}|S_p|<\frac{\eta}{2}\sum_{p\in\mathcal P}N_p(I)=\frac{\eta}{2}\mu L,
+\]
+contradicting the previous lower bound and the triangle inequality. Hence there exists $p\in\mathcal P$ such that
+\[
+|S_p|\ge \frac{\eta}{2}N_p(I)\gg_\eta \frac{L}{p},
+\]
+which proves \eqref{eq:small-prime-slice-bias}.
+
+Finally,
+\[
+|S_p|^2
+=
+\sum_{u,v\in\Z}
+a_h(u)a_h(v)\,\ee{\alpha(u-v)}
+\mathbf 1_I(u)\mathbf 1_I(v)
+\mathbf 1_{p\mid u}\mathbf 1_{p\mid v}.
+\]
+Writing $u=n+r$ and $v=n$ yields exactly \eqref{eq:projected-delta-packet}. Therefore
+\[
+\mathcal D^{(p)}_{I,\alpha}=|S_p|^2\gg_\eta \frac{L^2}{p^2},
+\]
+which is \eqref{eq:projected-delta-packet-lb}. The representation \eqref{eq:projected-delta-packet-step-p} follows because $p\mid n$ and $p\mid n+r$ imply $p\mid r$.
+\end{proof}
+
+\begin{remark}[What the small-prime selector does and does not give]
+Theorem~\ref{thm:small-prime-projected-delta} produces a genuine projected delta/off-diagonal object from a bad block. However, its kernel is the bare correlation
+\[
+a_h(n+p\ell)a_h(n)\,\ee{\alpha p\ell},
+\]
+whereas the exact affine-shear mechanism acts on projected packets built from
+\[
+g_\alpha(n+p\ell h)\overline{g_\alpha(n)}.
+\]
+Thus the theorem does not yet produce the projected Fej\'er/shear packet required for the quadratic-obstruction argument below. It closes the ``manufacture a projector'' step only at the delta-packet level, not at the Fej\'er/shear level.
+\end{remark}
+
+To bring in the exact arithmetic self-similarity that survives after projection, we now work with the projected Fej\'er/shear packet on the divisible slice modulo a prime $p\nmid h$.
+
+\begin{proposition}[Exact affine shear on the divisible slice]
+\label{prop:projected-affine-shear}
+Let $p\nmid h$ be prime, let $R\ge 1$ be an integer, and let $z\in\C$ with $|z|=1$. Define
+\[
+\mathcal F^{(p)}_{I,\alpha}(R;z)
+:=
+\sum_{|m|<pR}\left(1-\frac{|m|}{pR}\right)z^m
+\sum_{n\in\Z}
+\mathbf 1_I(n)\mathbf 1_I(n+mh)
+\mathbf 1_{p\mid n}\mathbf 1_{p\mid n+mh}
+ g_\alpha(n+mh)\overline{g_\alpha(n)}.
+\]
+Also define
+\[
+\beta_p:=\frac{\alpha p(p-1)}{2},
+\qquad
+I/p:=\{n'\in\Z:\ pn'\in I\}.
+\]
+Then
+\[
+\mathcal F^{(p)}_{I,\alpha}(R;z)
+=
+\sum_{|\ell|<R}\left(1-\frac{|\ell|}{R}\right)
+\bigl(z^p\ee{\beta_ph}\bigr)^\ell
+\sum_{n'\in\Z}
+\mathbf 1_{I/p}(n')\mathbf 1_{I/p}(n'+\ell h)
+ g_{p^2\alpha}(n'+\ell h)\overline{g_{p^2\alpha}(n')}.
+\]
+\end{proposition}
+
+\begin{proof}
+Because $p\nmid h$, the conditions $p\mid n$ and $p\mid n+mh$ imply $p\mid m$. Write $m=p\ell$ and $n=pn'$. By complete multiplicativity of $\lambda$,
+\[
+g_\alpha(pm)
+=
+-\lambda(m)\,\ee{Q_\alpha(pm)}.
+\]
+Also
+\[
+Q_\alpha(pm)=Q_{p^2\alpha}(m)+\beta_p m,
+\]
+so
+\[
+g_\alpha(pm)=-\ee{\beta_p m}\,g_{p^2\alpha}(m).
+\]
+Substituting $m=p\ell$ and $n=pn'$ into the definition of $\mathcal F^{(p)}_{I,\alpha}(R;z)$, the two minus signs cancel and we obtain
+\[
+g_\alpha(p(n'+\ell h))\overline{g_\alpha(pn')}
+=
+\ee{\beta_p\ell h}\,g_{p^2\alpha}(n'+\ell h)\overline{g_{p^2\alpha}(n')}.
+\]
+The stated identity follows.
+\end{proof}
+
+
+\subsection{Projected transport defect and rigidity}
+
+Fix a prime $p\nmid h$, a dyadic interval $J_0\subset\Z$ of length $|J_0|=2^L$, and a phase $\alpha\in\T$. Put
+\[
+\beta_p:=\frac{\alpha p(p-1)}{2},
+\qquad
+b(n):=\ee{-\beta_ph}\,g_\alpha(p(n+h))\overline{g_\alpha(pn)}
+= g_{p^2\alpha}(n+h)\overline{g_{p^2\alpha}(n)}.
+\]
+Then $|b(n)|=1$ for every $n$. For each dyadic subinterval $J\subseteq J_0$, define
+\[
+m_J:=\frac1{|J|}\sum_{n\in J} b(n),
+\qquad
+c_J:=\frac{m_J}{|m_J|}\in\T
+\quad (m_J\neq 0).
+\]
+If $J$ has dyadic children $J_-,J_+$, define the transport defect
+\[
+\delta(J):=\frac{|m_{J_-}|+|m_{J_+}|}{2}-|m_J|\ge 0.
+\]
+Write $\mathcal D^\circ(J_0)$ for the set of proper dyadic subintervals of $J_0$, and define the total transport defect
+\[
+\mathsf T(J_0):=\frac1{|J_0|}\sum_{J\in\mathcal D^\circ(J_0)} |J|\,\delta(J).
+\]
+Finally, for $m\ge 0$ let
+\[
+J_0(m):=\{n\in J_0:\ n,n+h,\dots,n+mh\in J_0\}.
+\]
+
+\begin{proposition}[Small projected transport defect implies projected rigidity]
+\label{prop:projected-rigidity}
+Assume that $|m_J|\ge \eta$ for every dyadic subinterval $J\subseteq J_0$, where $0<\eta\le 1$. Then with $c:=c_{J_0}$ one has
+\[
+\frac1{|J_0|}\sum_{n\in J_0}|b(n)-c|
+\le
+\varepsilon,
+\qquad
+\varepsilon:=\frac{\sqrt{8L\,\mathsf T(J_0)}}{\eta}.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $J\subseteq J_0$ be dyadic with children $J_-,J_+$. Write
+\[
+m_{J_\pm}=a_\pm u_\pm,
+\qquad
+a_\pm:=|m_{J_\pm}|\in [\eta,1],
+\qquad
+u_\pm\in\T,
+\]
+and write $m_J=|m_J|c_J$ with $c_J\in\T$. Since
+\[
+m_J=\frac{m_{J_-}+m_{J_+}}{2},
+\]
+we have
+\[
+4|m_J|^2=(a_-+a_+)^2-a_-a_+|u_--u_+|^2.
+\]
+Also,
+\[
+2\delta(J)=a_-+a_+-2|m_J|.
+\]
+Hence
+\[
+2\delta(J)=\frac{a_-a_+|u_--u_+|^2}{a_-+a_++2|m_J|}
+\ge \frac{\eta^2}{4}|u_--u_+|^2,
+\]
+so
+\[
+|u_--u_+|^2\le \frac{8}{\eta^2}\,\delta(J).
+\]
+Because $c_J$ is the phase of the convex combination $a_-u_-+a_+u_+$, it lies on the shorter arc joining $u_-$ and $u_+$. Therefore
+\[
+|c_{J_\pm}-c_J|\le |u_--u_+|,
+\qquad
+|c_{J_\pm}-c_J|^2\le \frac{8}{\eta^2}\,\delta(J).
+\]
+Now fix $n\in J_0$, and let
+\[
+J_0\supset J_1(n)\supset \cdots \supset J_L(n)=\{n\}
+\]
+be the dyadic ancestor chain of $n$. Since $c_{\{n\}}=b(n)$, telescoping gives
+\[
+|b(n)-c_{J_0}|
+\le \sum_{j=0}^{L-1}|c_{J_{j+1}(n)}-c_{J_j(n)}|.
+\]
+By Cauchy--Schwarz,
+\[
+|b(n)-c_{J_0}|^2
+\le L\sum_{j=0}^{L-1}|c_{J_{j+1}(n)}-c_{J_j(n)}|^2.
+\]
+Average over $n\in J_0$. Each internal dyadic interval $J\subsetneq J_0$ contributes with weight $|J|/|J_0|$, so
+\[
+\frac1{|J_0|}\sum_{n\in J_0}|b(n)-c_{J_0}|^2
+\le \frac{8L}{\eta^2|J_0|}
+\sum_{J\in\mathcal D^\circ(J_0)} |J|\,\delta(J)
+=
+\frac{8L}{\eta^2}\,\mathsf T(J_0).
+\]
+Taking square roots and using Cauchy--Schwarz once more gives the claim.
+\end{proof}
+
+\begin{proposition}[Projected rigidity yields a long projected Fej\'er packet]
+\label{prop:projected-rigidity-to-packet}
+Assume the hypotheses of Proposition~\ref{prop:projected-rigidity}. Let $R\ge 1$ satisfy
+\[
+R\le \frac{|J_0|}{8|h|}
+\qquad\text{and}\qquad
+\mathsf T(J_0)\le \frac{\eta^2}{512LR^2}.
+\]
+Then, with $c:=c_{J_0}$,
+\[
+\Re\sum_{m=0}^{R-1}\left(1-\frac{m}{R}\right)
+\overline c^{\,m}
+\frac1{|J_0(m)|}
+\sum_{n\in J_0(m)} g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}
+\ge \frac{R}{4}.
+\]
+Consequently, if $I:=pJ_0$ and $z\in\T$ is chosen so that
+\[
+z^p\ee{\beta_ph}=\overline c,
+\]
+then
+\[
+\Re\,\mathcal F^{(p)}_{I,\alpha}(R;z)
+\ge \frac{R|J_0|}{8}.
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:projected-rigidity},
+\[
+\frac1{|J_0|}\sum_{n\in J_0}|b(n)-c|\le \varepsilon
+:=\frac{\sqrt{8L\,\mathsf T(J_0)}}{\eta}
+\le \frac{1}{8R}.
+\]
+For $0\le m<R$ and $n\in J_0(m)$ one has the telescoping identity
+\[
+g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}\,\overline c^{\,m}
+=
+\prod_{j=0}^{m-1}\bigl(b(n+jh)\overline c\bigr).
+\]
+Since each factor has modulus at most $1$,
+\[
+\left|\prod_{j=0}^{m-1} z_j-1\right|\le \sum_{j=0}^{m-1}|z_j-1|
+\qquad (|z_j|\le 1).
+\]
+Therefore
+\[
+\left|
+\frac1{|J_0(m)|}\sum_{n\in J_0(m)}g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}\,\overline c^{\,m}-1
+\right|
+\le
+\sum_{j=0}^{m-1}
+\frac1{|J_0(m)|}\sum_{n\in J_0(m)}|b(n+jh)-c|.
+\]
+Because $m<R\le |J_0|/(8|h|)$, we have $|J_0(m)|\ge |J_0|/2$. Hence each inner average is at most $2\varepsilon$, and so
+\[
+\left|
+\frac1{|J_0(m)|}\sum_{n\in J_0(m)}g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}\,\overline c^{\,m}-1
+\right|
+\le 2m\varepsilon.
+\]
+Taking real parts and summing against Fej\'er weights yields
+\[
+\Re\sum_{m=0}^{R-1}\left(1-\frac{m}{R}\right)
+\overline c^{\,m}
+\frac1{|J_0(m)|}
+\sum_{n\in J_0(m)} g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}
+\ge
+\sum_{m=0}^{R-1}\left(1-\frac{m}{R}\right)(1-2m\varepsilon).
+\]
+Since $R\varepsilon\le 1/8$,
+\[
+\sum_{m=0}^{R-1}\left(1-\frac{m}{R}\right)(1-2m\varepsilon)
+\ge \frac{R}{2}-2\varepsilon\sum_{m=0}^{R-1}m
+\ge \frac{R}{2}-\varepsilon R^2
+\ge \frac{R}{4}.
+\]
+This proves the first claim.
+
+For the second, note that $I=pJ_0$ and Proposition~\ref{prop:projected-affine-shear} give
+\[
+\mathcal F^{(p)}_{I,\alpha}(R;z)
+=
+\sum_{|m|<R}\left(1-\frac{|m|}{R}\right)
+\bigl(z^p\ee{\beta_ph}\bigr)^m
+\sum_{n\in\Z}\1_{J_0}(n)\1_{J_0}(n+mh)
+ g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}.
+\]
+By the choice of $z$, the phase factor equals $\overline c^{\,m}$. Discarding the negative values of $m$ and using $|J_0(m)|\ge |J_0|/2$ for $0\le m<R$, we obtain
+\[
+\Re\,\mathcal F^{(p)}_{I,\alpha}(R;z)
+\ge \frac{|J_0|}{2}
+\Re\sum_{m=0}^{R-1}\left(1-\frac{m}{R}\right)
+\overline c^{\,m}
+\frac1{|J_0(m)|}
+\sum_{n\in J_0(m)} g_{p^2\alpha}(n+mh)\overline{g_{p^2\alpha}(n)}
+\ge \frac{R|J_0|}{8}.
+\]
+This proves the proposition.
+\end{proof}
+
+\begin{proposition}[Exact transport-defect identity on a projected slice]
+\label{prop:projected-transport-identity}
+With the notation above,
+\[
+\sum_{J\in\mathcal D^\circ(J_0)} |J|\,\delta(J)
+=
+|J_0|-|J_0|\,|m_{J_0}|.
+\]
+Equivalently,
+\[
+\mathsf T(J_0)=1-|m_{J_0}|.
+\]
+\end{proposition}
+
+\begin{proof}
+By definition,
+\[
+|J|\,\delta(J)
+=
+\frac{|J|}{2}\bigl(|m_{J_-}|+|m_{J_+}|\bigr)-|J|\,|m_J|
+=
+|J_-|\,|m_{J_-}|+|J_+|\,|m_{J_+}|-|J|\,|m_J|.
+\]
+Summing over all proper dyadic subintervals $J\subsetneq J_0$ telescopes to
+\[
+\sum_{J\in\mathcal D^\circ(J_0)} |J|\,\delta(J)
+=
+\sum_{\text{dyadic leaves }\{n\}\subset J_0} |\{n\}|\,|m_{\{n\}}|-|J_0|\,|m_{J_0}|.
+\]
+But $m_{\{n\}}=b(n)$ and $|b(n)|=1$, so the leaf sum equals $|J_0|$. This gives the identity.
+\end{proof}
+
+\begin{corollary}[Greedy chain selection from moderate projected bias]
+\label{cor:projected-greedy-chain}
+Let $\rho:=|m_{J_0}|$, and build a greedy chain
+\[
+J_0\supset J_1\supset J_2\supset \cdots
+\]
+by always choosing $J_{k+1}$ to be the child of $J_k$ with larger $|m|$. Then for every $r\ge 1$ one has
+\[
+\sum_{k=0}^{r-1}\delta(J_k)\le 1-\rho.
+\]
+Consequently, for any threshold $\lambda>0$,
+\[
+\#\{0\le k<r:\ \delta(J_k)>\lambda\}
+\le \frac{1-\rho}{\lambda}.
+\]
+In particular, among the first $r$ levels there is a consecutive run of length at least
+\[
+\frac{r}{\lfloor (1-\rho)/\lambda\rfloor+1}-1
+\]
+on which every defect is at most $\lambda$.
+\end{corollary}
+
+\begin{proof}
+For each $k$,
+\[
+|m_{J_{k+1}}|
+\ge \frac{|m_{(J_k)_-}|+|m_{(J_k)_+}|}{2}
+= |m_{J_k}|+\delta(J_k).
+\]
+Summing this from $k=0$ to $r-1$ and using $|m_{J_r}|\le 1$ gives
+\[
+\sum_{k=0}^{r-1}\delta(J_k)
+\le 1-|m_{J_0}|=1-\rho.
+\]
+The bound on the number of indices with $\delta(J_k)>\lambda$ is immediate. If there are at most $q:=\lfloor (1-\rho)/\lambda\rfloor$ bad indices among the first $r$ levels, then these indices split the range $\{0,1,\dots,r-1\}$ into at most $q+1$ consecutive blocks, so one block has length at least $r/(q+1)-1$.
+\end{proof}
+
+\begin{proposition}[A large projected packet forces a quadratic obstruction]
+\label{prop:projected-packet-quadratic}
+Let $J:=I/p$. Assume that $R\asymp |J|/|h|$ and that for some $\kappa>0$ and some unit complex number $z$ one has
+\[
+\Re\,\mathcal F^{(p)}_{I,\alpha}(R;z)\ge \kappa R|J|.
+\]
+Then
+\[
+\sup_{\deg P\le 2}
+\left|\frac{1}{|J|}\sum_{n\in J}\lambda(n)\,\ee{P(n)}\right|
+\gg_{\kappa,h}1.
+\]
+\end{proposition}
+
+\begin{proof}
+Choose $\gamma\in\R$ such that
+\[
+\ee{\gamma h}=z^p\ee{\beta_p h}.
+\]
+Define
+\[
+f(n):=g_{p^2\alpha}(n)\mathbf 1_J(n),
+\qquad
+\widetilde f(n):=f(n)\ee{\gamma n}.
+\]
+By Proposition~\ref{prop:projected-affine-shear},
+\[
+\mathcal F^{(p)}_{I,\alpha}(R;z)
+=
+\sum_{|\ell|<R}\left(1-\frac{|\ell|}{R}\right)
+\sum_{n\in\Z}\widetilde f(n+\ell h)\overline{\widetilde f(n)}.
+\]
+Embed $J$ into a cyclic group $G=\Z/N\Z$ with $N\asymp |J|$ and no wraparound. Let
+\[
+\widehat{\widetilde f}(\xi):=\frac1N\sum_{n\in G}\widetilde f(n)\,\ee{-\xi n/N}
+\qquad (\xi\in G).
+\]
+Fourier inversion gives
+\[
+\sum_{|\ell|<R}\left(1-\frac{|\ell|}{R}\right)
+\sum_{n\in G}\widetilde f(n+\ell h)\overline{\widetilde f(n)}
+=
+N\sum_{\xi\in G}|\widehat{\widetilde f}(\xi)|^2F_R\!\left(\frac{h\xi}{N}\right),
+\]
+where
+\[
+F_R(t):=\sum_{|\ell|<R}\left(1-\frac{|\ell|}{R}\right)\ee{\ell t}
+\]
+is the Fej\'er kernel. Hence
+\[
+N\sum_{\xi\in G}|\widehat{\widetilde f}(\xi)|^2F_R\!\left(\frac{h\xi}{N}\right)
+\ge \kappa R|J|.
+\]
+Since $\sum_{\xi\in G}|\widehat{\widetilde f}(\xi)|^2=|J|/N$ by Parseval and $F_R\ge 0$, there is a constant $c_h>0$ such that the set
+\[
+\Omega_h:=\left\{\xi\in G: F_R\!\left(\frac{h\xi}{N}\right)\ge c_hR\right\}
+\]
+has cardinality $O_h(1)$ when $R\asymp N/|h|$. Therefore some $\xi_0\in\Omega_h$ satisfies
+\[
+|\widehat{\widetilde f}(\xi_0)|^2\gg_{\kappa,h}1.
+\]
+Unwinding the definitions,
+\[
+\widehat{\widetilde f}(\xi_0)
+=
+\frac1N\sum_{n\in J}\lambda(n)
+\,\ee{Q_{p^2\alpha}(n)+\gamma n-\xi_0n/N}.
+\]
+The phase
+\[
+P(n):=Q_{p^2\alpha}(n)+\gamma n-\xi_0n/N
+\]
+has degree at most $2$, and $N\asymp |J|$, so
+\[
+\sup_{\deg P\le 2}
+\left|\frac{1}{|J|}\sum_{n\in J}\lambda(n)\,\ee{P(n)}\right|
+\gg_{\kappa,h}1.
+\]
+This proves the claim.
+\end{proof}
+
+This conclusion should be viewed as a local quadratic-phase obstruction in the spirit of the polynomial-phase and nilsequence literature \cite{greentao2012mobiusnil,matomaki2023higher,matomakiShao2021poly}.
+
+\begin{remark}[Remaining bottleneck]
+\label{rem:current-bottleneck}
+The rigorous chain established above isolates the remaining obstruction. Indeed,
+\[
+\text{bad block}
+\Longrightarrow
+\text{large unprojected packet}
+\]
+by Proposition~\ref{prop:bad-block-packet}, and also
+\[
+\text{bad block}
+\Longrightarrow
+\text{large projected delta packet on }0\!\!\pmod p
+\]
+for some small prime $p\nmid h$, by Theorem~\ref{thm:small-prime-projected-delta}. On the projected side we now also have the deterministic implication
+\begin{align*}
+&\text{tiny projected transport defect}
+\Longrightarrow
+\text{projected rigidity}\\
+&\Longrightarrow
+\text{large projected Fej\'er/shear packet}
+\Longrightarrow
+\text{local quadratic obstruction},
+\end{align*}
+by Propositions~\ref{prop:projected-rigidity}, \ref{prop:projected-rigidity-to-packet}, and \ref{prop:projected-packet-quadratic}.
+
+However, Proposition~\ref{prop:projected-transport-identity} shows that tiny total projected transport defect is equivalent to near-total projected top mean:
+\[
+\mathsf T(J_0)=1-|m_{J_0}|.
+\]
+Thus a selector that only produces a projected slice with $|m_{J_0}|\gg_\eta 1$ cannot by itself yield the transport bound needed for Proposition~\ref{prop:projected-rigidity-to-packet}. The strongest unconditional replacement currently available is Corollary~\ref{cor:projected-greedy-chain}: from moderate projected bias one can still extract a long run of small \emph{one-step} defects along a greedy chain.
+
+The remaining gap is therefore sharper than the earlier ``delta packet to Fej\'er packet'' bridge. One must either:
+\begin{enumerate}[label=(\roman*)]
+\item manufacture a projector or weight that boosts the projected top mean from $\gg_\eta 1$ to $1-o(1)$, so that Proposition~\ref{prop:projected-rigidity-to-packet} applies at the full length $R\asymp |J_0|/|h|$; or
+\item prove a stronger contagion theorem that upgrades a long run of small one-step defects, as in Corollary~\ref{cor:projected-greedy-chain}, directly into a long projected Fej\'er packet.
+\end{enumerate}
+This is the remaining bottleneck in the present argument.
+\end{remark}
+
+\section{Proof of the conditional fixed-shift theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The hypothesis of Theorem~\ref{thm:main} is precisely the short-interval first-moment assumption \eqref{eq:first-moment-criterion-hyp}. By Theorem~\ref{thm:first-moment-criterion}, this yields \eqref{eq:short-block-criterion-conc}. Theorem~\ref{thm:short-block-criterion} then applies directly and gives
+\[
+A_h(N)=o(N)
+\qquad (N\to\infty).
+\]
+\end{proof}
+
+\begin{remark}
+There are two routes through the paper. The direct route proving Theorem~\ref{thm:main} is
+\begin{center}
+absolute first moment
+$\Longrightarrow$ critical short-block energy
+$\Longrightarrow$ prefix cancellation.
+\end{center}
+The structural route is
+\begin{center}
+short-block criterion
+$\Longrightarrow$ energy profile and discrete derivative
+$\Longrightarrow$ Fourier--Dirichlet reformulation
+$\Longrightarrow$ positive multiscale estimate
+$\Longrightarrow$ dyadic local quartic shells
+$\Longrightarrow$ fourth-power local $U^2$ criterion
+$\Longrightarrow$ packet reformulations and projected bottleneck.
+\end{center}
+Theorem~\ref{thm:main} is conditional.\par
+The paper ends with the projected-packet bottleneck rather than with an unconditional proof of fixed-shift pair Chowla.
+\end{remark}
+
+\section*{Funding}
+This research received no external funding.
+
+\section{Acknowledgments}
+
+I would like to thank AGIR Labs for their help and support in my writing this work. Jennifer Dodgson, CEO and Chief AI Engineer, graciously enabled my collaboration with their group. I would also like to thank the DAObi cryptocurrency and Chinese classics project for their help and aid. 
+
+I would like to thank Professor Yang-Hui He for his inspiring work at the intersection of mathematics and artificial intelligence, which influenced aspects of my approach. I also thank Ernest Petherbridge, whose suggestions for literature provided invaluable foundational context for this project.
+
+\begin{thebibliography}{99}
+
+\bibitem[Tao(2016)]{tao2016logarithmically}
+T. Tao,
+\newblock The logarithmically averaged Chowla and Elliott conjectures for two-point correlations,
+\newblock {\em Forum of Mathematics, Pi} \textbf{4} (2016), e8.
+
+\bibitem[Tao and Ter\"av\"ainen(2019)]{taoteravainen2019almostall}
+T. Tao and J. Ter\"av\"ainen,
+\newblock The structure of correlations of multiplicative functions at almost all scales, with applications to the Chowla and Elliott conjectures,
+\newblock {\em Algebra \& Number Theory} \textbf{13} (2019), no.~9, 2103--2150.
+
+\bibitem[Matom\"aki and Radziwi\l\l(2016)]{matomaki2016multiplicative}
+K. Matom\"aki and M. Radziwi\l\l,
+\newblock Multiplicative functions in short intervals,
+\newblock {\em Annals of Mathematics} \textbf{183} (2016), no.~3, 1015--1056.
+
+\bibitem[Matom\"aki, Radziwi\l\l, and Tao(2020)]{matomaki2020fourier}
+K. Matom\"aki, M. Radziwi\l\l, and T. Tao,
+\newblock Fourier uniformity of bounded multiplicative functions in short intervals on average,
+\newblock {\em Inventiones Mathematicae} \textbf{220} (2020), no.~1, 1--58.
+
+\bibitem[Matom\"aki et al.(2023)]{matomaki2023higher}
+K. Matom\"aki, M. Radziwi\l\l, T. Tao, J. Ter\"av\"ainen, and T. Ziegler,
+\newblock Higher uniformity of bounded multiplicative functions in short intervals on average,
+\newblock {\em Annals of Mathematics} \textbf{197} (2023), no.~2, 739--857.
+
+\bibitem[Chowla(1965)]{chowla1965riemann}
+S. Chowla,
+\newblock {\em The Riemann Hypothesis and Hilbert's Tenth Problem},
+\newblock Gordon and Breach, New York, 1965.
+
+\bibitem[Zygmund(1959)]{zygmund1959trigonometric}
+A. Zygmund,
+\newblock {\em Trigonometric Series},
+\newblock 2nd ed., Vols.~I--II, Cambridge University Press, Cambridge, 1959.
+
+\bibitem[Gowers(2001)]{gowers2001szemeredi}
+W. T. Gowers,
+\newblock A new proof of Szemer\'edi's theorem,
+\newblock {\em Geom. Funct. Anal.} \textbf{11} (2001), no.~3, 465--588.
+
+\bibitem[Tao and Vu(2006)]{taovu2006additive}
+T. Tao and V. Vu,
+\newblock {\em Additive Combinatorics},
+\newblock Cambridge Studies in Advanced Mathematics, vol.~105,
+\newblock Cambridge University Press, Cambridge, 2006.
+
+\bibitem[Grafakos(2008)]{grafakos2008classical}
+L. Grafakos,
+\newblock {\em Classical Fourier Analysis},
+\newblock 2nd ed., Graduate Texts in Mathematics, vol.~249,
+\newblock Springer, New York, 2008.
+
+\bibitem[Green and Tao(2012)]{greentao2012mobiusnil}
+B. Green and T. Tao,
+\newblock The M\"obius function is strongly orthogonal to nilsequences,
+\newblock {\em Ann. of Math. (2)} \textbf{175} (2012), no.~2, 541--566.
+
+\bibitem[Matom\"aki and Shao(2021)]{matomakiShao2021poly}
+K. Matom\"aki and X. Shao,
+\newblock Discorrelation between primes in short intervals and polynomial phases,
+\newblock {\em Int. Math. Res. Not. IMRN} 2021, no.~16, 12330--12355.
+
+\bibitem[Talagrand(2005)]{talagrand2005generic}
+M. Talagrand,
+\newblock {\em The Generic Chaining: Upper and Lower Bounds of Stochastic Processes},
+\newblock Springer Monographs in Mathematics,
+\newblock Springer, Berlin, 2005.
+\end{thebibliography}
+
+\end{document}

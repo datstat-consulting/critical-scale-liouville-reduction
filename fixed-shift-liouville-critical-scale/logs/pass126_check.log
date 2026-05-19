@@ -1,0 +1,99 @@
+FixedShiftLiouville_pass126.lean:155:5: warning: unused variable `hC`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:266:12: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FixedShiftLiouville_pass126.lean:303:2: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+FixedShiftLiouville_pass126.lean:341:5: warning: unused variable `hτ1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:537:8: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FixedShiftLiouville_pass126.lean:1043:5: warning: unused variable `hsq`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+FixedShiftLiouville_pass126.lean:1495:30: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+FixedShiftLiouville_pass126.lean:2784:14: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FixedShiftLiouville_pass126.lean:2799:14: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FixedShiftLiouville_pass126.lean:4403:14: warning: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4759:7: warning: unused variable `i`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4759:10: warning: unused variable `j`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4762:11: warning: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4886:7: warning: unused variable `i`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4886:10: warning: unused variable `j`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4886:13: warning: unused variable `k`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4887:14: warning: unused variable `j`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4889:9: warning: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:4948:5: warning: unused variable `hlam`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:5025:2: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+FixedShiftLiouville_pass126.lean:5149:4: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FixedShiftLiouville_pass126.lean:5265:21: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+FixedShiftLiouville_pass126.lean:7092:2: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+FixedShiftLiouville_pass126.lean:7211:5: warning: unused variable `hsqev`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:7212:5: warning: unused variable `hdom`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FixedShiftLiouville_pass126.lean:9016:6: warning: 'change Int.toNat ((M : ℤ) + 1 - -(M : ℤ)) = 2 * M + 1' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+FixedShiftLiouville_pass126.lean:9335:5: warning: unused variable `hcore`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

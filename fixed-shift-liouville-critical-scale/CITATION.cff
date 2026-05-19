@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Critical-scale reductions for fixed-shift Liouville pair correlations"
+message: "Please cite this repository and the accompanying manuscript."
+type: software
+authors:
+  - family-names: "REPLACE_WITH_AUTHOR_SURNAME"
+    given-names: "REPLACE_WITH_AUTHOR_GIVEN_NAMES"
+version: "0.1.0"
+date-released: "2026-05-19"
+repository-code: "https://github.com/REPLACE_WITH_USERNAME/fixed-shift-liouville-critical-scale"
+license: "NOASSERTION"

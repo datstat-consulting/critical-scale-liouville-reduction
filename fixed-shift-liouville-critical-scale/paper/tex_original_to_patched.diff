@@ -1,0 +1,400 @@
+--- /mnt/data/critical_scale_reduction_fixed_shift_liouville_pair_correlations.tex	2026-05-19 04:40:43.134286739 +0000
++++ /mnt/data/critical_scale_reduction_fixed_shift_liouville_pair_correlations_patched.tex	2026-05-19 04:43:04.795147898 +0000
+@@ -42,7 +42,7 @@
+ \[
+ A_h(N):=\sum_{n\le N}\lambda(n)\lambda(n+h).
+ \]
+-We develop a critical-scale reduction theory for the asymptotic formula $A_h(N)=o(N)$, the fixed-shift two-point case of Chowla's conjecture, at the scale $H=X^{1/2}$. Passing to the derived sequence $a_h(n)=\lambda(n)\lambda(n+h)$, we obtain exact quartic Ces\`aro, Fourier--Dirichlet, dyadic-shell, and short-interval first-moment reformulations of the critical short-block criterion. We then prove a fixed-shift local $U^2$ reduction and introduce a projected packet formalism for bad blocks. On the projected side we establish an exact affine-shear identity, a rigidity theorem, and an exact transport-defect identity, and we show that a large projected Fej\'er/shear packet forces a local quadratic-phase obstruction for $\lambda$. These results reduce the fixed-shift problem to a sharply structured final dichotomy between projected bias and projected long-range packet formation.
++We develop a critical-scale reduction theory for the asymptotic formula $A_h(N)=o(N)$, the fixed-shift two-point case of Chowla's conjecture, at the scale $H=X^{1/2}$. Passing to the derived sequence $a_h(n)=\lambda(n)\lambda(n+h)$, we separate the direct absolute first-moment implication from the signed Fej\'er-kernel and dyadic-shell identities, and we record exact quartic Ces\`aro, Fourier--Dirichlet, dyadic-shell, and first-moment reformulations of the critical short-block criterion. We then prove the correct fixed-shift local $U^2$ reduction: the normalized local quantity is a fourth-power quantity, so block sums are controlled through a fourth-power estimate and a Young/H\"older averaging step, not by a false linear pointwise bound. Finally we introduce a projected packet formalism for bad blocks. On the projected side we establish an exact affine-shear identity, a rigidity theorem, and an exact transport-defect identity, and we show that a large projected Fej\'er/shear packet forces a local quadratic-phase obstruction for $\lambda$. The output is a structured conditional reduction of the remaining obstruction to projected bias, transport rigidity, and projected long-range packet formation.
+ \end{abstract}
+ 
+ \section{Introduction and statement of results}
+@@ -66,9 +66,9 @@
+ \[
+ a_h(n):=\lambda(n)\lambda(n+h),
+ \]
+-and develop a chain of exact reformulations and reductions for its short sums and associated energy profile. In particular, we obtain quartic Ces\`aro, Fourier--Dirichlet, dyadic-shell, and short-interval first-moment criteria, together with a positive multiscale absorption theorem. The Fourier-kernel side of the argument is classical in spirit \cite{zygmund1959trigonometric,grafakos2008classical}, while the multiscale organization is deterministic and chaining-style rather than generic chaining in Talagrand's stochastic-process sense \cite{talagrand2005generic}. We then prove a genuinely fixed-shift local $U^2$ reduction and introduce a projected packet formalism for bad blocks. On the projected side we establish an exact affine-shear identity, a rigidity theorem, and an exact transport-defect identity, and we show that a large projected Fej\'er/shear packet forces a local quadratic-phase obstruction for $\lambda$, in the broader context of recent polynomial-phase and higher-uniformity results for multiplicative functions in short intervals \cite{matomaki2023higher,greentao2012mobiusnil,matomakiShao2021poly}. In this way the fixed-shift problem is reduced to a precise final dichotomy between projected bias and projected long-range packet formation.
++and develop a chain of exact reformulations and reductions for its short sums and associated energy profile. In particular, we obtain quartic Ces\`aro, Fourier--Dirichlet, dyadic-shell, and short-interval first-moment criteria, together with a positive multiscale absorption theorem. The Fourier-kernel side of the argument is classical in spirit \cite{zygmund1959trigonometric,grafakos2008classical}, while the multiscale organization is deterministic and chaining-style rather than generic chaining in Talagrand's stochastic-process sense \cite{talagrand2005generic}. We then record a fixed-shift local $U^2$ reduction in the fourth-power normalization used in the formal development. This point is important: the averaged local $U^2$ input is consumed through a fourth-power estimate and a scalar Young inequality, not through a linear pointwise bound in the normalized fourth-power mass. Finally we introduce a projected packet formalism for bad blocks. On the projected side we establish an exact affine-shear identity, a rigidity theorem, and an exact transport-defect identity, and we show that a large projected Fej\'er/shear packet forces a local quadratic-phase obstruction for $\lambda$, in the broader context of recent polynomial-phase and higher-uniformity results for multiplicative functions in short intervals \cite{matomaki2023higher,greentao2012mobiusnil,matomakiShao2021poly}. In this way the fixed-shift problem is reduced to a precise final dichotomy between projected bias and projected long-range packet formation.
+ 
+-The first global consequence of this reduction theory is the following conditional implication.
++A basic global consequence of the short-block framework is the following conditional implication. It is stated in absolute first-moment form; this is stronger information than signed Fej\'er cancellation, because it controls the total mass of bad short blocks rather than cancellations between shells.
+ 
+ \begin{theorem}[Conditional fixed-shift theorem]\label{thm:main}
+ Fix $h\neq 0$. Assume that, with $H=\lfloor X^{1/2}\rfloor$, one has
+@@ -87,7 +87,7 @@
+ \]
+ \end{theorem}
+ 
+-Section~\ref{sec:first-moment} contains the first-moment criterion, Section~\ref{sec:local-u2} records the fixed-shift local $U^2$ reduction, and Section~\ref{sec:projected-packets} develops the projected transport and packet framework that captures the final transition in the reduction.
++Section~\ref{sec:first-moment} contains the direct first-moment implication and its dyadic-shell consequence. Section~\ref{sec:local-u2} records the corrected fourth-power local $U^2$ reduction. Section~\ref{sec:projected-packets} develops the projected transport and packet framework that captures the final transition in the reduction.
+ 
+ \section{The critical short-block criterion}
+ \label{sec:short-block}
+@@ -326,6 +326,25 @@
+ since $HX\asymp X^{3/2}=o(X^2)=o(XH^2)$ and $H^3\asymp X^{3/2}=o(XH^2)$. The conclusion follows from Theorem~\ref{thm:short-block-criterion}.
+ \end{proof}
+ 
++
++\begin{remark}[Signed Fej\'er cancellation and Abel summation]
++\label{rem:signed-fejer-abel}
++The preceding identities also explain a useful boundary of the method. If
++\[
++S_h(M;X):=\sum_{1\le t\le M}P_h(t;X),
++\]
++then the Fej\'er-weighted off-diagonal term satisfies the exact Abel identity
++\[
++\sum_{1\le t<H}(H-t)P_h(t;X)
++=\sum_{M=1}^{H-1}S_h(M;X).
++\]
++Consequently a signed hypothesis such as
++\[
++\sup_{1\le M\le H}\abs{S_h(M;X)}=o(XH)
++\]
++would imply the critical energy estimate by a direct summation-by-parts argument, together with Proposition~\ref{prop:energy-profile}. This signed route is deliberately not the same as the absolute first-moment hypothesis used in Theorem~\ref{thm:main}: signed Fej\'er cancellation can hide cancellation between positive and negative shell contributions, whereas the absolute first moment controls the total mass of large short blocks and feeds into the bad-block and packet reductions below.
++\end{remark}
++
+ \section{Fourier reformulation and positive multiscale absorption}
+ \label{sec:fourier}
+ 
+@@ -618,15 +637,18 @@
+ \section{A short-interval first-moment theorem}
+ \label{sec:first-moment}
+ 
+-We now supply the final input for the dyadic shell criterion. The point is that each shell partial sum can be rewritten so that the shift variable is absorbed into a short block sum of the derived sequence
++We now isolate the role of the absolute first moment. There is a direct implication from
+ \[
+-a_h(n)=\lambda(n)\lambda(n+h).
++\sup_{1\le M\le H}
++\frac{1}{XM}\sum_{X\le x\le 2X-M}\abs{B_h(x;M)}=o(1)
+ \]
+-This converts the dyadic local quartic problem into a short-interval first-moment estimate for the corresponding block sums
++to the critical short-block criterion: at the single scale $M=H$, the pointwise bound $\abs{B_h(x;H)}\le H$ gives
+ \[
+-B_h(x;M)=\sum_{x<n\le x+M}a_h(n).
++\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2
++\le
++H\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}=o(XH^2).
+ \]
+-The next proposition is the exact bridge between these two formulations.
++Thus the first-moment implication itself is elementary once absolute values are available. We nevertheless keep the dyadic-shell bridge because it identifies exactly which local quartic shell quantities are controlled by the same absolute first moments, and these shell quantities feed the packet analysis below.
+ 
+ \begin{proposition}[Shells are dominated by first moments]
+ \label{prop:shells-dominated-by-first-moments}
+@@ -680,6 +702,21 @@
+ \end{theorem}
+ 
+ \begin{proof}
++Apply \eqref{eq:first-moment-criterion-hyp} at $M=H$. Since $\abs{a_h(n)}\le 1$, every $H$-block satisfies $\abs{B_h(x;H)}\le H$. Hence
++\[
++\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}^2
++\le
++H\sum_{X\le x\le 2X-H}\abs{B_h(x;H)}=o(XH^2).
++\]
++The critical short-block criterion, Theorem~\ref{thm:short-block-criterion}, now gives \eqref{eq:short-block-criterion-conc}.
++\end{proof}
++
++\begin{corollary}[First moments also control dyadic local quartic shells]
++\label{cor:first-moment-dyadic-shells}
++Under the hypothesis \eqref{eq:first-moment-criterion-hyp}, the dyadic local quartic condition \eqref{eq:dyadic-local-quartic-hyp} holds.
++\end{corollary}
++
++\begin{proof}
+ Fix a shell $I_k$ and a point $u\in I_k$, and let
+ \[
+ T:=u-2^k+1
+@@ -703,79 +740,143 @@
+ \[
+ \abs{Q_{h,k}(u;X)}=o(XT)=o(X2^k)
+ \]
+-uniformly in $k$ and $u$. This is exactly the hypothesis \eqref{eq:dyadic-local-quartic-hyp} of Theorem~\ref{thm:dyadic-local-quartic-criterion}. That theorem therefore yields the positive multiscale estimate \eqref{eq:positive-multiscale-hyp}, and Theorem~\ref{thm:positive-multiscale-criterion} then gives \eqref{eq:short-block-criterion-conc}.
++uniformly in $k$ and $u$, which is exactly \eqref{eq:dyadic-local-quartic-hyp}.
+ \end{proof}
+ 
+ \section{A fixed-shift local \texorpdfstring{$U^2$}{U2} reduction}
+ \label{sec:local-u2}
+ 
+-We next record a further exact reduction of the short-interval first-moment hypothesis, phrased in terms of local Gowers norms \cite{gowers2001szemeredi,taovu2006additive}. For a finitely supported function $F:\Z\to\C$, define
++We next record the local $U^2$ reduction in the normalization used in the formal development. The point which matters for the sequel is that the normalized local quantity below is a fourth-power quantity. Consequently the correct block estimate is a fourth-power estimate, not a linear estimate in the normalized fourth-power mass.
++
++For a finitely supported function $f:\Z\to\C$ and a finite interval $I\subset\Z$, put
+ \[
+-\|F\|_{U^2(\Z)}^4
+-:=
+-\sum_{a-b=c-d}F(a)\overline{F(b)}\,\overline{F(c)}F(d)
+-=
+-\sum_{t\in\Z}\left|\sum_{n\in\Z}F(n+t)\overline{F(n)}\right|^2.
++C_f(I;t):=\sum_{n\in I}\1_I(n+t)f(n+t)\overline{f(n)}.
++\]
++Define
++\[
++U_2^4(f;I):=\sum_{-|I|\le t\le |I|}\abs{C_f(I;t)}^2,
++\qquad
++\mathcal U_2(f;I):=\frac{U_2^4(f;I)}{\max(|I|,1)^3}.
+ \]
+-If $I\subset\Z$ is a finite interval, define the normalized local $U^2$ norm by
++For $x,M\in\N$, let
+ \[
+-\|f\|_{U^2(I)}:=\frac{\|f\,\mathbf 1_I\|_{U^2(\Z)}}{\|\mathbf 1_I\|_{U^2(\Z)}}.
++I_{x,M}:=\{x+1,x+2,\ldots,x+M\}\subset\Z
+ \]
+-For an interval $I$ of length $M$, one has
++and let $\widetilde a:\Z\to\C$ be the zero extension of $a$ from $\N$ to $\Z$, viewed as complex-valued. Thus
+ \[
+-\|\mathbf 1_I\|_{U^2(\Z)}^4=\sum_{|t|<M}(M-|t|)^2\asymp M^3.
++B_a(x;M)=\sum_{x<n\le x+M}a(n)=\sum_{n\in I_{x,M}}\widetilde a(n).
+ \]
++When $a=a_h$, we write $B_h(x;M)$ as before.
+ 
+-\begin{proposition}[Block sums are controlled by local $U^2$]
+-\label{prop:block-sum-local-u2}
+-Let $I=[x+1,x+M]\cap\Z$ with $M\ge 1$. Then
++\begin{proposition}[Correlation expansion]
++\label{prop:local-u2-correlation-expansion}
++For every $a:\N\to\R$ and every $x,M\in\N$,
+ \[
+-|B_h(x;M)|\ll M\,\|a_h\|_{U^2(I)}.
++\sum_{-M\le t\le M} C_{\widetilde a}(I_{x,M};t)
++=
++\left(\sum_{n\in I_{x,M}}\widetilde a(n)\right)
++\overline{\left(\sum_{n\in I_{x,M}}\widetilde a(n)\right)}.
++\]
++Equivalently,
++\[
++\sum_{-M\le t\le M} C_{\widetilde a}(I_{x,M};t)
++=B_a(x;M)\overline{B_a(x;M)}.
+ \]
+-The implied constant is absolute.
+ \end{proposition}
+ 
+ \begin{proof}
+-Choose an integer $N$ with $4M<N\le 8M$, and work on the cyclic group $G:=\Z/N\Z$. Define
++Expand the left-hand side and interchange the two finite sums:
+ \[
+-g_{x,M}(m):=a_h(x+m)\,\mathbf 1_{[1,M]}(m)
+-\qquad (m\in G).
++\sum_{-M\le t\le M}\sum_{n\in I_{x,M}}
++\1_{I_{x,M}}(n+t)\widetilde a(n+t)\overline{\widetilde a(n)}.
+ \]
+-Then
++For fixed $n\in I_{x,M}$, the change of variables $m=n+t$ bijects the admissible shifts with $m\in I_{x,M}$. Hence the inner sum is
+ \[
+-B_h(x;M)=\sum_{m\in G}g_{x,M}(m)=N\,\mathbb E_{m\in G}g_{x,M}(m).
++\sum_{m\in I_{x,M}}\widetilde a(m)\overline{\widetilde a(n)}.
+ \]
+-By monotonicity of Gowers norms on finite abelian groups,
++Summing in $n$ gives
+ \[
+-\left|\mathbb E_{m\in G}g_{x,M}(m)\right|=\|g_{x,M}\|_{U^1(G)}\le \|g_{x,M}\|_{U^2(G)},
++\sum_{n\in I_{x,M}}\left(\sum_{m\in I_{x,M}}\widetilde a(m)\right)
++\overline{\widetilde a(n)}
++=
++\left(\sum_{m\in I_{x,M}}\widetilde a(m)\right)
++\overline{\left(\sum_{n\in I_{x,M}}\widetilde a(n)\right)}.
+ \]
+-so
+-\begin{equation}
+-\label{eq:block-u2-cyclic-step}
+-|B_h(x;M)|\le N\,\|g_{x,M}\|_{U^2(G)}.
+-\end{equation}
+-Because $N>4M$, no additive parallelogram contributing to $\|g_{x,M}\|_{U^2(G)}$ wraps around $G$. Hence
++\end{proof}
++
++\begin{proposition}[Fourth-power local $U^2$ block estimate]
++\label{prop:local-u2-fourth-power-block}
++For every $a:\N\to\R$, every $x\in\N$, and every $M\ge1$,
+ \[
+-\|g_{x,M}\|_{U^2(G)}^4
+-=
+-N^{-3}\,\|a_h\,\mathbf 1_I\|_{U^2(\Z)}^4.
++\abs{B_a(x;M)}^4
++\le
++3M^4\,\mathcal U_2(\widetilde a;I_{x,M}).
+ \]
+-Therefore
++\end{proposition}
++
++\begin{proof}
++By Proposition~\ref{prop:local-u2-correlation-expansion},
+ \[
+-\|g_{x,M}\|_{U^2(G)}
++\abs{B_a(x;M)}^4
+ =
+-N^{-3/4}\,\|a_h\,\mathbf 1_I\|_{U^2(\Z)}
+-\ll
+-M^{-3/4}\,\|a_h\,\mathbf 1_I\|_{U^2(\Z)}.
++\left|\sum_{-M\le t\le M}C_{\widetilde a}(I_{x,M};t)\right|^2.
++\]
++Cauchy's inequality gives
++\[
++\left|\sum_{-M\le t\le M}C_{\widetilde a}(I_{x,M};t)\right|^2
++\le
++(2M+1)\sum_{-M\le t\le M}\abs{C_{\widetilde a}(I_{x,M};t)}^2.
++\]
++Since $M\ge1$, $2M+1\le3M$. Therefore
++\[
++\abs{B_a(x;M)}^4
++\le
++3M\,U_2^4(\widetilde a;I_{x,M}).
++\]
++Finally $|I_{x,M}|=M$, so
++\[
++U_2^4(\widetilde a;I_{x,M})
++=M^3\mathcal U_2(\widetilde a;I_{x,M}),
++\]
++which gives the claimed bound.
++\end{proof}
++
++\begin{remark}[The missing fourth root]
++\label{rem:local-u2-fourth-root}
++Because $\mathcal U_2$ is normalized as a fourth-power quantity, Proposition~\ref{prop:local-u2-fourth-power-block} implies only
++\[
++\abs{B_a(x;M)}
++\le
++3^{1/4}M\,\mathcal U_2(\widetilde a;I_{x,M})^{1/4}.
++\]
++A pointwise estimate of the form
++\[
++\abs{B_a(x;M)}\le C M\,\mathcal U_2(\widetilde a;I_{x,M})
++\]
++would use the fourth-power normalized quantity linearly. That is not the estimate used below. The averaged first-moment implication is instead obtained from the fourth-power estimate by a scalar Young inequality.
++\end{remark}
++
++\begin{lemma}[Young form of the fourth-root step]
++\label{lem:young-fourth-scaled}
++Let $y,q,M,\eta\ge0$, with $M>0$ and $\eta>0$. If
++\[
++y^4\le3M^4q,
++\]
++then
++\[
++y\le \eta M+\frac{3}{\eta^3}Mq.
+ \]
+-Since $\|\mathbf 1_I\|_{U^2(\Z)}\asymp M^{3/4}$, this becomes
++\end{lemma}
++
++\begin{proof}
++Put $t=y/M$. Then $t\ge0$ and $t^4\le3q$. If $t\le\eta$, the claim follows immediately. Otherwise $\eta\le t$, hence
+ \[
+-\|g_{x,M}\|_{U^2(G)}\ll \|a_h\|_{U^2(I)}.
++t\le \frac{t^4}{\eta^3}\le\frac{3q}{\eta^3}.
+ \]
+-Substituting this into \eqref{eq:block-u2-cyclic-step} and using $N\asymp M$ gives the claim.
++Multiplying by $M$ and adding the harmless term $\eta M$ gives the displayed estimate in both cases.
+ \end{proof}
+ 
+-\begin{theorem}[Uniform local $U^2$ criterion for fixed $h$]
++\begin{theorem}[Uniform fourth-power local $U^2$ criterion for fixed $h$]
+ \label{thm:local-u2-criterion}
+ Assume that
+ \begin{equation}
+@@ -783,8 +884,8 @@
+ \sup_{1\le M\le H}
+ \frac{1}{X}
+ \sum_{X\le x\le 2X-M}
+-\|a_h\|_{U^2([x+1,x+M])}
+-\to 0
++\mathcal U_2(\widetilde a_h;I_{x,M})
++\to0
+ \qquad (X\to\infty).
+ \end{equation}
+ Then
+@@ -795,24 +896,46 @@
+ \end{theorem}
+ 
+ \begin{proof}
+-By Proposition~\ref{prop:block-sum-local-u2},
++We first derive the first-moment hypothesis. Fix $\varepsilon>0$, set $\eta:=\varepsilon/2$, and put
+ \[
+-\sum_{X\le x\le 2X-M}|B_h(x;M)|
+-\ll
+-M\sum_{X\le x\le 2X-M}\|a_h\|_{U^2([x+1,x+M])}.
++K:=\frac{3}{\eta^3}.
++\]
++Apply \eqref{eq:local-u2-criterion-hyp} with the tolerance $\delta:=\varepsilon/(2K)$. For all sufficiently large $X$, uniformly for $1\le M\le H$,
++\[
++\sum_{X\le x\le2X-M}\mathcal U_2(\widetilde a_h;I_{x,M})
++\le \delta X.
++\]
++For each such $x,M$, Proposition~\ref{prop:local-u2-fourth-power-block} and Lemma~\ref{lem:young-fourth-scaled} give
++\[
++\abs{B_h(x;M)}
++\le
++\eta M+K M\mathcal U_2(\widetilde a_h;I_{x,M}).
+ \]
+-Taking the supremum over $1\le M\le H$ and using \eqref{eq:local-u2-criterion-hyp}, we obtain the first-moment hypothesis \eqref{eq:first-moment-criterion-hyp}. The conclusion therefore follows from Theorem~\ref{thm:first-moment-criterion}.
++Summing over $X\le x\le2X-M$, and using that this interval has at most $X$ integer starting points, gives
++\[
++\sum_{X\le x\le2X-M}\abs{B_h(x;M)}
++\le
++\eta MX+KM\sum_{X\le x\le2X-M}\mathcal U_2(\widetilde a_h;I_{x,M}).
++\]
++The last sum is at most $\delta X$, hence
++\[
++\sum_{X\le x\le2X-M}\abs{B_h(x;M)}
++\le
++\frac{\varepsilon}{2}MX+KM\frac{\varepsilon}{2K}X
++=\varepsilon XM.
++\]
++This is precisely \eqref{eq:first-moment-criterion-hyp}. The conclusion follows from Theorem~\ref{thm:first-moment-criterion}.
+ \end{proof}
+ 
+ \begin{remark}[Why the natural $U^3$ upgrade still misses fixed $h$]
+-A tempting way to improve Proposition~\ref{prop:block-sum-local-u2} is to rewrite the block sum as a mean of a discrete derivative and then try to control that derivative by a local $U^3$ norm of $\lambda$. On a finite abelian group $G$ one indeed has the exact identity from Gowers-norm formalism \cite{gowers2001szemeredi,taovu2006additive}
++A tempting way to force the local input is to rewrite the block sum as a mean of a discrete derivative and then try to control that derivative by a local $U^3$ norm of $\lambda$. On a finite abelian group $G$ one has the exact identity from Gowers-norm formalism \cite{gowers2001szemeredi,taovu2006additive}
+ \begin{equation}
+ \label{eq:u3-derivative-identity}
+ \|f\|_{U^3(G)}^8 = \mathbb E_{r\in G}\,\|\Delta_r f\|_{U^2(G)}^4,
+ \qquad
+ \Delta_r f(x):=f(x+r)\overline{f(x)}.
+ \end{equation}
+-Thus a local $U^3$ bound for $\lambda$ controls the local $U^2$ norms of the derivative sequences $\lambda(n)\lambda(n+r)$ only \emph{after averaging over the shift parameter $r$}. In schematic form this yields bounds of the shape
++Thus a local $U^3$ bound for $\lambda$ controls fourth powers of local $U^2$ quantities for the derivative sequences $\lambda(n)\lambda(n+r)$ only \emph{after averaging over the shift parameter $r$}. In schematic form this yields bounds of the shape
+ \begin{equation}
+ \label{eq:schematic-averaged-r-u2}
+ \frac1X\sum_x\frac1M\sum_{|r|\ll M}
+@@ -1536,15 +1659,15 @@
+ \text{large projected delta packet on }0\!\!\pmod p
+ \]
+ for some small prime $p\nmid h$, by Theorem~\ref{thm:small-prime-projected-delta}. On the projected side we now also have the deterministic implication
+-\[
+-\text{tiny projected transport defect}
+-\Longrightarrow
+-\text{projected rigidity}
++\begin{align*}
++&\text{tiny projected transport defect}
+ \Longrightarrow
++\text{projected rigidity}\\
++&\Longrightarrow
+ \text{large projected Fej\'er/shear packet}
+ \Longrightarrow
+ \text{local quadratic obstruction},
+-\]
++\end{align*}
+ by Propositions~\ref{prop:projected-rigidity}, \ref{prop:projected-rigidity-to-packet}, and \ref{prop:projected-packet-quadratic}.
+ 
+ However, Proposition~\ref{prop:projected-transport-identity} shows that tiny total projected transport defect is equivalent to near-total projected top mean:
+@@ -1572,15 +1695,20 @@
+ \end{proof}
+ 
+ \begin{remark}
+-The argument proceeds through the following chain of reductions:
++There are two routes through the paper. The direct route proving Theorem~\ref{thm:main} is
++\begin{center}
++absolute first moment
++$\Longrightarrow$ critical short-block energy
++$\Longrightarrow$ prefix cancellation.
++\end{center}
++The structural route is
+ \begin{center}
+ short-block criterion
+ $\Longrightarrow$ energy profile and discrete derivative
+ $\Longrightarrow$ Fourier--Dirichlet reformulation
+ $\Longrightarrow$ positive multiscale estimate
+-$\Longrightarrow$ dyadic local quartic criterion
+-$\Longrightarrow$ short-interval first-moment criterion
+-$\Longrightarrow$ local $U^2$ criterion
++$\Longrightarrow$ dyadic local quartic shells
++$\Longrightarrow$ fourth-power local $U^2$ criterion
+ $\Longrightarrow$ packet reformulations and projected bottleneck.
+ \end{center}
+ Theorem~\ref{thm:main} is conditional.\par
