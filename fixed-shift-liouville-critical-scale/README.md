@@ -1,10 +1,6 @@
 # Critical-scale reductions for fixed-shift Liouville pair correlations
 
-This repository accompanies the manuscript
-
-**Critical-scale reduction for fixed-shift Liouville pair correlations**.
-
-It contains the paper source, a compiled PDF, and a Lean 4 formalization of the
+This repository accompanies the manuscript **Critical-scale reduction for fixed-shift Liouville pair correlations**. It contains the paper source, a compiled PDF, and a Lean 4 formalization of the
 main deterministic reduction lemmas used in the manuscript.
 
 > **Scope.** This repository represents the first half of the project: the
@@ -111,7 +107,7 @@ pdflatex -interaction=nonstopmode -halt-on-error critical_scale_reduction_fixed_
 
 ## AI-use disclosure
 
-AI tools were used only for:
+AI tools (ChatGPT Plus 5.5 Extended Thinking) were used only for:
 
 - Lean proof engineering and proof repair;
 - literature review support;
