@@ -1,6 +1,6 @@
 # AI-use disclosure
 
-AI tools were used in a limited, assistive capacity for this repository. The
+AI tools (ChatGPT 5.5 Plus Extended Thinking) were used in a limited, assistive capacity for this repository. The
 repository is presented as the first, deterministic-reduction half of the
 project; AI assistance was not used to assert or certify an unconditional proof
 of the remaining analytic obstruction.
